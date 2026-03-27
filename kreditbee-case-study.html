@@ -5,414 +5,360 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kreditbee CLV — PM Case Study</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
             color: #1a1a1a;
-            background: white;
+            background: #fafafa;
         }
         .container {
-            max-width: 800px;
+            max-width: 780px;
             margin: 0 auto;
-            padding: 80px 40px;
+            padding: 60px 40px;
+            background: white;
         }
-        h1 {
-            font-size: 2.2em;
+        .section-label {
+            font-size: 0.85em;
             font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .subtitle {
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #ddd;
-        }
-        .section {
-            margin-bottom: 80px;
-        }
-        .section-number {
-            display: block;
-            font-size: 0.9em;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: #666;
-            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            color: #999;
+            margin-bottom: 16px;
             text-transform: uppercase;
         }
-        h2 {
-            font-size: 1.6em;
+        h1 {
+            font-size: 2em;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e5e5e5;
         }
+        h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 24px;
+            margin-top: 50px;
+        }
+        h3 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 30px 0 12px 0;
+        }
+        p { margin-bottom: 16px; color: #4a4a4a; }
         .metric-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: #e5e5e5;
             margin: 40px 0;
+            border: 1px solid #e5e5e5;
         }
-        .metric {
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
+        .metric-cell {
+            background: white;
+            padding: 24px;
         }
-        .metric-number {
-            display: block;
+        .metric-value {
             font-size: 1.8em;
             font-weight: 600;
-            color: #1a1a1a;
+            display: block;
             margin-bottom: 8px;
         }
         .metric-label {
-            font-size: 0.95em;
-            color: #666;
-            line-height: 1.6;
-        }
-        .problem-chain {
-            padding: 40px 0;
-            margin: 40px 0;
-            border-top: 1px solid #ddd;
-            border-bottom: 1px solid #ddd;
-        }
-        .chain-item {
-            margin-bottom: 20px;
-            font-size: 0.95em;
-            line-height: 1.8;
-        }
-        .chain-label {
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 6px;
-        }
-        .chain-detail {
-            color: #666;
-            margin-left: 0;
-        }
-        .arrow {
-            color: #999;
-            margin: 12px 0;
             font-size: 0.9em;
+            color: #666;
+            line-height: 1.5;
         }
-        h3 {
-            font-size: 1.2em;
+        .chain {
+            margin: 40px 0;
+            padding: 30px 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .chain-step {
+            margin-bottom: 24px;
+            padding-left: 20px;
+            border-left: 2px solid #e5e5e5;
+        }
+        .chain-step:last-child { margin-bottom: 0; }
+        .chain-title {
             font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 16px;
+            margin-bottom: 4px;
         }
-        .subsection {
-            margin-bottom: 30px;
+        .chain-desc {
+            color: #666;
+            font-size: 0.95em;
+        }
+        .lever-box {
+            background: #fafafa;
+            padding: 24px;
+            margin: 20px 0;
+            border-left: 3px solid #1a1a1a;
+        }
+        .lever-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .solution {
+            margin: 30px 0;
+            padding: 24px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .solution:last-child { border-bottom: none; }
+        .solution h4 {
+            font-size: 1.05em;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .solution p {
+            margin-bottom: 16px;
+            color: #666;
+        }
+        ol {
+            margin-left: 20px;
+            color: #4a4a4a;
+        }
+        ol li {
+            margin-bottom: 8px;
+            padding-left: 8px;
         }
         ul {
             margin-left: 20px;
-            color: #666;
+            color: #4a4a4a;
         }
-        li {
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-        strong {
-            color: #1a1a1a;
-            font-weight: 600;
-        }
-        .solution {
-            padding: 30px 0;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
-        }
-        .solution h4 {
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #1a1a1a;
-        }
-        .solution-description {
-            color: #666;
-            margin-bottom: 16px;
-            line-height: 1.7;
-        }
-        .solution ol {
-            margin-left: 20px;
-            color: #666;
-        }
-        .solution li {
-            margin-bottom: 10px;
-        }
-        .stakeholder {
-            padding: 30px 0;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 30px;
-        }
-        .stakeholder-name {
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            font-size: 1.05em;
-        }
-        .stakeholder-desc {
-            color: #666;
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-        .stakeholder-lever {
-            color: #666;
-            font-size: 0.95em;
-            font-style: italic;
-        }
-        .metrics-flow {
-            padding: 30px 0;
-            margin: 30px 0;
+        ul li {
+            margin-bottom: 8px;
         }
         .flow-row {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
+            margin: 16px 0;
             font-size: 0.9em;
+            flex-wrap: wrap;
         }
         .flow-item {
             padding: 10px 16px;
-            border: 1px solid #ddd;
-            background: #f9f9f9;
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            white-space: nowrap;
         }
         .flow-arrow {
             color: #999;
-        }
-        .key-metrics {
-            padding: 30px 0;
-            border-top: 1px solid #ddd;
-        }
-        .key-metrics h4 {
             font-weight: 600;
-            margin-bottom: 16px;
-            color: #1a1a1a;
         }
-        .key-metrics ul {
-            color: #666;
+        .metrics-list {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e5e5;
         }
-        .key-metrics li {
+        .metrics-list li {
             margin-bottom: 14px;
-            line-height: 1.7;
         }
         .footer {
-            margin-top: 80px;
-            padding-top: 40px;
-            border-top: 1px solid #ddd;
-            color: #999;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e5e5;
             font-size: 0.9em;
-        }
-        .footer p {
-            margin-bottom: 8px;
+            color: #999;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Kreditbee CLV</h1>
-        <p class="subtitle">How Product Design Unlocks Customer Lifetime Value</p>
+        <h1>Kreditbee CLV — PM Case Study</h1>
 
-        <!-- Section 1 -->
-        <div class="section">
-            <span class="section-number">01 — Framework</span>
-            <h2>What Actually Drives CLV?</h2>
-            
-            <p style="color: #666; margin-bottom: 30px;">Customer Lifetime Value = Loan Repayment Success Rate × Repeat Loans per User</p>
-
-            <div style="padding: 30px 0; border: 1px solid #eee; margin: 30px 0;">
-                <div style="margin-bottom: 20px;">
-                    <div style="font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">Lever A — Our Focus</div>
-                    <div style="color: #666;">Avg. Loan Repayment Success Rate</div>
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <div style="font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">Lever B — Our Focus</div>
-                    <div style="color: #666;">Avg. Repeat Loans per User</div>
-                </div>
-            </div>
-
-            <h3>Lever A: Repayment Success</h3>
-            <p style="color: #666; margin-bottom: 20px;">A user who never borrows a second loan has contributed minimally to CLV. Kreditbee's biggest leak is users who take a first loan, have a bad experience, and never return. Fixing first-loan experience is the fastest way to unlock repeat borrowing.</p>
-
-            <h3>Lever B: Repeat Borrowing</h3>
-            <p style="color: #666;">Unit economics require repeat loans. A user who borrows once every 6 months will generate far more lifetime value than a user who borrows once and leaves. The problem: users don't trust Kreditbee enough to come back because they don't understand the platform.</p>
-        </div>
-
-        <!-- Section 2 -->
-        <div class="section">
-            <span class="section-number">02 — The Problem</span>
-            <h2>Where CLV is Actually Breaking</h2>
-
-            <div class="metric-grid">
-                <div class="metric">
-                    <span class="metric-number">40-50%</span>
-                    <span class="metric-label">Users who never apply for a second loan after initial confusion or rejection</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-number">3-5 days</span>
-                    <span class="metric-label">Critical window after first application before user loses interest</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-number">20-30%</span>
-                    <span class="metric-label">Users who stop using the app immediately after rejection</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-number">100K+</span>
-                    <span class="metric-label">Monthly users who could borrow again but don't</span>
-                </div>
-            </div>
-
-            <p style="color: #666; margin: 40px 0; font-size: 1.05em; line-height: 1.8;">Users don't trust Kreditbee because the loan experience is opaque. They don't understand interest rates, EMI calculations, eligibility criteria, or why they were rejected. After a bad first experience, switching costs nothing.</p>
-
-            <div class="problem-chain">
-                <div class="chain-item">
-                    <div class="chain-label">Root Cause</div>
-                    <div class="chain-detail">Loan application process lacks clarity and transparency</div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="chain-item">
-                    <div class="chain-label">User Experience</div>
-                    <div class="chain-detail">User confused about terms, rates, eligibility. Rejection without explanation.</div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="chain-item">
-                    <div class="chain-label">Short-Term Signal</div>
-                    <div class="chain-detail">User abandons app, doesn't apply again</div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="chain-item">
-                    <div class="chain-label">Retention Impact</div>
-                    <div class="chain-detail">First→Second loan conversion drops. User never becomes repeat borrower.</div>
-                </div>
-                <div class="arrow">↓</div>
-                <div class="chain-item">
-                    <div class="chain-label">Business Impact</div>
-                    <div class="chain-detail">CLV collapses. Acquisition spend wasted. Competitive defection.</div>
-                </div>
-            </div>
-
-            <h3>Problem Breakdown</h3>
-            
-            <div class="subsection">
-                <strong>Clarity broken — First loan experience is confusing</strong>
-                <ul>
-                    <li>Interest rates shown, but users don't understand effective cost</li>
-                    <li>EMI calculation opaque. Users surprised at commitment size.</li>
-                    <li>Eligibility criteria not clear upfront. Rejection feels arbitrary.</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <strong>Conversion broken — Users don't return</strong>
-                <ul>
-                    <li>No reason given for rejection. User assumes disqualified forever.</li>
-                    <li>No visibility into when eligibility might improve.</li>
-                    <li>Trust not built. Easy to switch to competitors.</li>
-                </ul>
+        <!-- 01 Framework -->
+        <div class="section-label">01 — Framework</div>
+        <h2>What actually drives CLV?</h2>
+        
+        <div style="margin: 30px 0; padding: 30px; background: #fafafa;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <strong>Lever A</strong> (Retention Duration) × <strong>Lever B</strong> (Repeat Loan Frequency) = <strong>CLV</strong>
             </div>
         </div>
 
-        <!-- Section 3 -->
-        <div class="section">
-            <span class="section-number">03 — Stakeholders</span>
-            <h2>Who is Directly Affected?</h2>
+        <div class="lever-box">
+            <div class="lever-title">Lever A — Focus</div>
+            <div>Increase retention duration</div>
+            <p style="margin-top: 8px; color: #666;">A user who churns after the first loan contributes minimally to CLV. Fixing first-loan experience is the fastest way to extend how long a user stays.</p>
+        </div>
 
-            <div class="stakeholder">
-                <div class="stakeholder-name">User / Borrower</div>
-                <div class="stakeholder-desc">Wants a simple, transparent way to borrow money. A single bad experience destroys trust. Zero switching cost — Bajaj Finserv is one app download away.</div>
-                <div class="stakeholder-lever"><strong>Lever:</strong> Clear terms → builds trust → comes back for second loan</div>
+        <div class="lever-box">
+            <div class="lever-title">Lever B — Focus</div>
+            <div>Increase repeat loan frequency</div>
+            <p style="margin-top: 8px; color: #666;">Fintech unit economics only work at 2-3 loans per year per user. A user stuck at 1 total loan makes acquisition spend structurally unprofitable.</p>
+        </div>
+
+        <!-- 02 Problem -->
+        <div class="section-label" style="margin-top: 60px;">02 — The Problem</div>
+        <h2>Where CLV is actually breaking</h2>
+
+        <div class="metric-grid">
+            <div class="metric-cell">
+                <span class="metric-value">40-50%</span>
+                <span class="metric-label">Users who never apply for second loan after initial confusion or rejection</span>
             </div>
-
-            <div class="stakeholder">
-                <div class="stakeholder-name">Kreditbee</div>
-                <div class="stakeholder-desc">Needs repeat borrowers for unit economics. Every churned first-time user is acquisition cost with near-zero lifetime value return.</div>
-                <div class="stakeholder-lever"><strong>Lever:</strong> Clarity in first experience → higher conversion → better CLV</div>
+            <div class="metric-cell">
+                <span class="metric-value">3-5 days</span>
+                <span class="metric-label">Critical window after first application before user loses interest or switches</span>
+            </div>
+            <div class="metric-cell">
+                <span class="metric-value">60%+</span>
+                <span class="metric-label">Application abandonment rate due to lengthy process and unclear requirements</span>
+            </div>
+            <div class="metric-cell">
+                <span class="metric-value">&lt;20%</span>
+                <span class="metric-label">First-time visitor to borrower conversion without effective onboarding</span>
             </div>
         </div>
 
-        <!-- Section 4 -->
-        <div class="section">
-            <span class="section-number">04 — Solution</span>
-            <h2>What Product Should Build</h2>
+        <p>The problem isn't that users dislike Kreditbee. It's that <strong>unclear loan terms, confusing eligibility, and rejection without explanation</strong> hit before the trust loop can form. After that, switching to Bajaj Finserv or MoneyTap costs nothing.</p>
 
-            <p style="color: #666; margin-bottom: 30px;">The gap isn't financing capability. The gap is clarity and trust-building. Users need to understand the journey, terms, and their chances before they commit.</p>
-
-            <div class="solution">
-                <h4>Solution 1: Pre-Application Transparency Dashboard</h4>
-                <p class="solution-description">Before users apply, show them exactly what they'd qualify for and why.</p>
-                <ol class="solution-list">
-                    <li>User enters income and loan amount needed</li>
-                    <li>App shows: "You likely qualify for ₹50,000-₹100,000. Here's why."</li>
-                    <li>Break down interest rate: "6-month loan: ₹X in interest."</li>
-                    <li>Show EMI upfront: "Your monthly payment is ₹XXX."</li>
-                    <li>Explain criteria: "You meet income, employment, and credit requirements."</li>
-                </ol>
+        <div class="chain">
+            <div class="chain-step">
+                <div class="chain-title">Root Cause</div>
+                <div class="chain-desc">Loan application process lacks transparency on terms, rates, eligibility</div>
             </div>
-
-            <div class="solution">
-                <h4>Solution 2: Rejection Clarity and Next Steps</h4>
-                <p class="solution-description">When users are rejected, give them a roadmap to qualify.</p>
-                <ol class="solution-list">
-                    <li>Surface reason clearly: "Your credit score is 580. We require 650+."</li>
-                    <li>Give actionable steps: "Pay off ₹X in outstanding debt."</li>
-                    <li>Show timeline: "Check back in 30 days."</li>
-                    <li>Allow retry: Enable reapplication after improvements</li>
-                    <li>Build trust: Offer lower-amount loans as trust builders</li>
-                </ol>
+            <div style="margin: 16px 0 16px 20px; color: #999;">→</div>
+            <div class="chain-step">
+                <div class="chain-title">User Experience</div>
+                <div class="chain-desc">User confused about EMI calculation, interest cost, why they're rejected</div>
             </div>
-
-            <div class="solution">
-                <h4>Solution 3: Post-Loan Engagement Loop</h4>
-                <p class="solution-description">After first successful loan, build habit and trust for second borrowing.</p>
-                <ol class="solution-list">
-                    <li>Track repayment milestones: "You've paid 3 EMIs on time."</li>
-                    <li>Show eligibility growth: "You now qualify for ₹150k."</li>
-                    <li>Proactive outreach: "Need funds? You qualify for ₹75k more."</li>
-                    <li>Gamify trust: "Loan streak: 12 on-time payments."</li>
-                </ol>
+            <div style="margin: 16px 0 16px 20px; color: #999;">→</div>
+            <div class="chain-step">
+                <div class="chain-title">Short-Term Signal</div>
+                <div class="chain-desc">Support tickets spike, app abandonment, negative reviews</div>
+            </div>
+            <div style="margin: 16px 0 16px 20px; color: #999;">→</div>
+            <div class="chain-step">
+                <div class="chain-title">Retention Impact</div>
+                <div class="chain-desc">First→Second loan conversion drops to 20-30%. User never becomes repeat borrower.</div>
+            </div>
+            <div style="margin: 16px 0 16px 20px; color: #999;">→</div>
+            <div class="chain-step">
+                <div class="chain-title">Business Impact</div>
+                <div class="chain-desc">CLV collapses. Acquisition spend wasted. Competitive defection to Bajaj/MoneyTap.</div>
             </div>
         </div>
 
-        <!-- Section 5 -->
-        <div class="section">
-            <span class="section-number">05 — Success Metrics</span>
-            <h2>How We Know It's Working</h2>
+        <h3>Problem Breakdown</h3>
+        
+        <p><strong>CLV collapses after the first loan</strong></p>
+        <ul style="margin-bottom: 20px;">
+            <li><strong>Lever A broken:</strong> Retention → 0. Bad first-loan experience means user never returns in 3-5 day window. Switches to competitor.</li>
+            <li><strong>Lever B broken:</strong> Frequency stays at 1. Habit loop never forms. No trust built. Acquisition spend doesn't compound.</li>
+        </ul>
 
-            <p style="color: #666; margin-bottom: 40px;">The fastest feedback loop is user confusion (support tickets, app abandonment). The truest measure is whether users return for a second loan.</p>
+        <p><strong>Root causes of first-loan failure</strong></p>
+        <ul>
+            <li>Terms not explained upfront (interest rates shown, but users don't understand effective cost)</li>
+            <li>EMI calculation opaque — users surprised at monthly commitment</li>
+            <li>Eligibility criteria unclear — rejection feels arbitrary, no explanation given</li>
+            <li>Lengthy application with 60%+ abandonment rate</li>
+            <li>Support response time exceeds 24 hours, adding friction</li>
+        </ul>
 
-            <div class="metrics-flow">
-                <div class="flow-row">
-                    <div class="flow-item">Application clarity ↑</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-item">App abandonment ↓</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-item">First loan completion ↑</div>
-                </div>
-                <div class="flow-row">
-                    <div class="flow-item">Rejection clarity ↑</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-item">Reapplication rate ↑</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-item">Second loan rate ↑</div>
-                </div>
+        <!-- 03 Stakeholders -->
+        <div class="section-label" style="margin-top: 60px;">03 — Stakeholders</div>
+        <h2>Who is directly affected?</h2>
+
+        <div style="margin: 30px 0; padding: 24px; background: #fafafa;">
+            <h3 style="margin-top: 0;">Stakeholder 1 → User / Borrower</h3>
+            <p>Wants simple, transparent borrowing. A single failure (hidden fees, confusing process, unfair rejection) destroys trust that takes many good experiences to rebuild. Zero switching cost — Bajaj Finserv is one tap away.</p>
+            <p style="margin-bottom: 0;"><strong>↑ Better first-loan clarity → stays, reorders, forms habit</strong></p>
+        </div>
+
+        <div style="margin: 30px 0; padding: 24px; background: #fafafa;">
+            <h3 style="margin-top: 0;">Stakeholder 2 → Kreditbee</h3>
+            <p>Needs habitual borrowers for unit economics to work. Every churned first-loan user is acquisition cost with zero LTV return. High support tickets and confused users signal product friction killing growth.</p>
+            <p style="margin-bottom: 0;"><strong>↑ Higher clarity → lower churn, higher repeat rate, better CLV</strong></p>
+        </div>
+
+        <!-- 04 Solution -->
+        <div class="section-label" style="margin-top: 60px;">04 — Solution</div>
+        <h2>What product should build</h2>
+
+        <p>Transparency and risk assessment tools already exist. The gap isn't financing capability — it's <strong>clarity and trust-building</strong>. Users need to understand the journey before they commit.</p>
+
+        <div class="solution">
+            <h4>Solution 1 · Pre-Application Transparency Dashboard</h4>
+            <p>A live eligibility preview before users submit — show them what they'd qualify for and why.</p>
+            <ol>
+                <li>User enters income and desired loan amount</li>
+                <li>App shows: "You likely qualify for ₹50,000-₹100,000 based on your profile"</li>
+                <li>Break down interest cost: "6-month loan: ₹X total interest vs 12-month: ₹Y"</li>
+                <li>Show EMI upfront: "If you borrow ₹50k, your monthly payment is ₹XXX"</li>
+                <li>Explain criteria met: "✓ Income verified ✓ Credit score 680+"</li>
+            </ol>
+        </div>
+
+        <div class="solution">
+            <h4>Solution 2 · Rejection Clarity + Improvement Roadmap</h4>
+            <p>When users are rejected, surface exact reason and give them a path to qualify.</p>
+            <ol>
+                <li>Surface reason clearly: "Your credit score is 580. We require 650+ for this loan amount"</li>
+                <li>Give actionable next steps: "Reduce outstanding debt by ₹X to improve eligibility"</li>
+                <li>Show timeline: "Check back in 30-60 days. Your score should improve by then"</li>
+                <li>Allow retry with lower amount: "You qualify for ₹10k loan now as a trust-builder"</li>
+                <li>Track improvement: Show credit score trend and eligibility progression over time</li>
+            </ol>
+        </div>
+
+        <div class="solution">
+            <h4>Solution 3 · Post-Loan Engagement Loop</h4>
+            <p>After first successful loan, build habit and trust for second borrowing.</p>
+            <ol>
+                <li>Track milestones: "You've paid 3 EMIs on time. Great progress!"</li>
+                <li>Show eligibility growth: "Your credit improved to 670. You now qualify for ₹150k"</li>
+                <li>Proactive outreach: "Need funds? You're pre-approved for ₹75k at 5.2% rate"</li>
+                <li>Gamify trust: "Loan streak: 12 on-time payments. Unlocked: better rates tier"</li>
+            </ol>
+        </div>
+
+        <!-- 05 Success Metrics -->
+        <div class="section-label" style="margin-top: 60px;">05 — Success Metrics</div>
+        <h2>How we know it's working</h2>
+
+        <p>Support tickets per user is the fastest feedback signal. First→Second loan conversion within 6 months is the slower but truer measure of whether CLV is fixed at root.</p>
+
+        <div style="margin: 30px 0;">
+            <div class="flow-row">
+                <div class="flow-item">Pre-app clarity ↑</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">Abandonment rate ↓</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">First loan completion ↑</div>
             </div>
-
-            <div class="key-metrics">
-                <h4>Key Metrics to Track</h4>
-                <ul>
-                    <li><strong>First→Second Loan Conversion:</strong> % of users who take a second loan within 6 months (target: 40-50%)</li>
-                    <li><strong>Support Tickets per User:</strong> Decrease from confusion (target: -40%)</li>
-                    <li><strong>Rejection Reapplication Rate:</strong> % of rejected users who reapply (target: 20%+)</li>
-                    <li><strong>CLV per New User:</strong> Total revenue per acquired user (target: +30%)</li>
-                </ul>
+            <div class="flow-row">
+                <div class="flow-item">Rejection clarity ↑</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">Reapplication rate ↑</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">Second loan rate ↑</div>
             </div>
+            <div class="flow-row">
+                <div class="flow-item">Post-loan engagement ↑</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">Repeat borrowing ↑</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-item">CLV per user ↑</div>
+            </div>
+        </div>
+
+        <div class="metrics-list">
+            <h3 style="margin-top: 0;">Key Metrics to Track</h3>
+            <ul>
+                <li><strong>First→Second Loan Conversion:</strong> % of users who take second loan within 6 months (target: 40-50%)</li>
+                <li><strong>Application Abandonment Rate:</strong> Reduce from 60%+ to &lt;30%</li>
+                <li><strong>Support Tickets per User:</strong> Decrease from clarity confusion (target: -50%)</li>
+                <li><strong>Rejection Reapplication Rate:</strong> % of rejected users who improve and reapply (target: 20%+)</li>
+                <li><strong>CLV per New User:</strong> Total revenue per acquired user (target: +40%)</li>
+            </ul>
         </div>
 
         <div class="footer">
-            <p><strong>Case study prepared by Ashwini Mishra</strong></p>
-            <p>LinkedIn: linkedin.com/in/ashwini-mishra | Email: mishrash662@gmail.com | +91-9289439376</p>
+            <p><strong>Case study prepared by Ashwini Mishra | Product Manager</strong></p>
+            <p>LinkedIn: linkedin.com/in/ashwini-mishra | mishrash662@gmail.com | +91-9289439376</p>
         </div>
     </div>
 </body>
