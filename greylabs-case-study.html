@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreyLabs AI — Autonomising PIVC — Ashwini Mishra</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Satoshi:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf8;
+  --bg-card: #ffffff;
+  --bg-subtle: #f3f3f0;
+  --accent: #1a1a1a;
+  --warm: #c4632a;
+  --warm-dim: rgba(196,99,42,0.08);
+  --red: #b91c1c;
+  --red-dim: rgba(185,28,28,0.07);
+  --green: #15803d;
+  --green-dim: rgba(21,128,61,0.07);
+  --blue: #1e40af;
+  --blue-dim: rgba(30,64,175,0.07);
+  --text: #1a1a1a;
+  --text2: #6b6b6b;
+  --text3: #999;
+  --border: #e8e8e4;
+  --border2: #d4d4cf;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Satoshi', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6}
+
+.progress{height:2px;background:var(--warm);position:fixed;top:0;left:0;z-index:101;transition:width .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:2.5px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px}
+.nav-links a{font-size:11px;color:var(--text3);text-decoration:none;padding:5px 12px;border-radius:100px;transition:all .25s;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--text);background:var(--bg-subtle)}
+
+.slide{min-height:100vh;scroll-snap-align:start;padding:120px 80px 80px;display:flex;flex-direction:column;justify-content:center;max-width:1200px;margin:0 auto}
+.slide-cover{align-items:flex-start;padding-top:160px}
+.cover-eyebrow{font-family:var(--mono);font-size:11px;color:var(--warm);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;opacity:0;animation:fi .6s .1s forwards}
+.cover-title{font-family:var(--serif);font-size:clamp(44px,6vw,76px);line-height:1.08;font-weight:400;max-width:820px;margin-bottom:32px;letter-spacing:-.02em;opacity:0;animation:fi .6s .25s forwards}
+.cover-title em{font-style:italic;color:var(--warm)}
+.cover-rule{width:64px;height:1.5px;background:var(--warm);margin-bottom:32px;opacity:0;animation:fi .6s .4s forwards}
+.cover-sub{font-size:17px;color:var(--text2);max-width:540px;line-height:1.7;margin-bottom:64px;opacity:0;animation:fi .6s .5s forwards}
+.cover-meta{display:flex;gap:40px;opacity:0;animation:fi .6s .65s forwards}
+.cover-meta-item{display:flex;flex-direction:column;gap:4px}
+.cm-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase}
+.cm-value{font-size:14px;font-weight:500}
+
+.sn{font-family:var(--mono);font-size:10px;color:var(--warm);letter-spacing:3px;margin-bottom:20px;text-transform:uppercase}
+.st{font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:400;line-height:1.12;margin-bottom:16px;letter-spacing:-.015em}
+.sl{font-size:16px;color:var(--text2);max-width:640px;line-height:1.7;margin-bottom:56px}
+
+.cg{display:grid;gap:16px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:1fr 1fr 1fr}.c4{grid-template-columns:1fr 1fr 1fr 1fr}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color .25s}
+.card:hover{border-color:var(--border2)}
+.cl{font-family:var(--mono);font-size:10px;color:var(--warm);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.card h3{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:10px;line-height:1.25}
+.card p{font-size:14px;color:var(--text2);line-height:1.65}
+.tag{display:inline-block;font-size:10px;font-family:var(--mono);padding:4px 10px;border-radius:100px;margin-top:14px;font-weight:500;letter-spacing:.5px}
+.tag.h{background:var(--green-dim);color:var(--green)}.tag.m{background:var(--warm-dim);color:var(--warm)}.tag.l{background:var(--blue-dim);color:var(--blue)}.tag.r{background:var(--red-dim);color:var(--red)}
+
+.sr{display:flex;gap:48px;margin-bottom:48px}
+.sv{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.02em}
+.slab{font-size:12px;color:var(--text3);margin-top:8px;font-weight:500}
+
+table.t{width:100%;border-collapse:collapse}
+table.t th{text-align:left;padding:12px 16px;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;border-bottom:1.5px solid var(--border2);font-weight:500}
+table.t td{padding:16px;font-size:14px;color:var(--text2);border-bottom:1px solid var(--border);line-height:1.55;vertical-align:top}
+table.t td:first-child{color:var(--text);font-weight:500}
+
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:12px;overflow:hidden}
+.fs{padding:28px 22px;background:var(--bg-card)}
+.ft{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:block}
+.fs h4{font-family:var(--serif);font-size:18px;font-weight:400;margin-bottom:10px}
+.fs p{font-size:13px;color:var(--text2);line-height:1.6}
+
+.tc{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;padding:16px 0 16px 44px;position:relative;font-size:14px;color:var(--text2);line-height:1.65;border-bottom:1px solid var(--border)}
+.steps li:last-child{border:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:17px;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:11px;display:flex;align-items:center;justify-content:center}
+
+.co{border-left:2px solid var(--warm);padding:20px 28px;background:var(--warm-dim);border-radius:0 8px 8px 0;margin:32px 0}
+.co p{font-size:14px;color:var(--text);line-height:1.7}
+.co cite{font-size:11px;color:var(--text3);display:block;margin-top:10px;font-style:normal;font-family:var(--mono)}
+
+.mb{margin:14px 0}
+.mbh{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.mbh span:first-child{color:var(--text2)}.mbh span:last-child{font-family:var(--mono);font-weight:500;font-size:12px}
+.mbt{height:6px;background:var(--bg-subtle);border-radius:3px;overflow:hidden}
+.mbf{height:100%;border-radius:3px;transition:width 1.2s}
+.mbf.w{background:var(--warm)}.mbf.g{background:var(--green)}.mbf.b{background:var(--blue)}
+
+.mx{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:12px;overflow:hidden}
+.mq{padding:28px;background:var(--bg-card)}
+.mq h4{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.mq ul{list-style:none;padding:0}
+.mq li{font-size:13px;color:var(--text2);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.55}
+.mq li:last-child{border:none}
+.q1 h4{color:var(--green)}.q2 h4{color:var(--blue)}.q3 h4{color:var(--warm)}.q4 h4{color:var(--red)}
+
+.slide-end{align-items:center;text-align:center}
+.end-link{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border:1.5px solid var(--text);color:var(--text);font-weight:500;font-size:14px;border-radius:100px;text-decoration:none;margin-top:36px;transition:all .25s}
+.end-link:hover{background:var(--text);color:var(--bg)}
+
+@keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.rv{opacity:0;transform:translateY(14px);transition:all .5s cubic-bezier(.25,1,.5,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .slide{padding:100px 24px 48px}
+  .c2,.c3,.c4{grid-template-columns:1fr}
+  .tc{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .sr{flex-wrap:wrap;gap:32px}
+  .mx{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .cover-meta{flex-direction:column;gap:20px}
+  nav{padding:12px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<nav>
+  <div class="nav-brand">Case Study</div>
+  <div class="nav-links">
+    <a href="#cover">Cover</a><a href="#context">Context</a><a href="#problem">Problem</a><a href="#users">Users</a><a href="#rca">RCA</a><a href="#current">Current</a><a href="#competitive">Competitive</a><a href="#framework">Framework</a><a href="#warmup">Warm-up</a><a href="#checkpoints">Checkpoints</a><a href="#audit">Audit</a><a href="#metrics">Metrics</a><a href="#priority">Priority</a><a href="#risks">Risks</a><a href="#summary">Summary</a>
+  </div>
+</nav>
+
+<!-- 1 COVER -->
+<section class="slide slide-cover" id="cover">
+  <div class="cover-eyebrow">Product Management Case Study — GreyLabs AI</div>
+  <h1 class="cover-title">Autonomising <em>PIVC</em> for Life Insurance</h1>
+  <div class="cover-rule"></div>
+  <p class="cover-sub">Cutting pre-issuance verification cost, raising completion rate, and staying IRDAI-compliant — without needing a human agent on every call.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="cm-label">Author</span><span class="cm-value">Ashwini Mishra</span></div>
+    <div class="cover-meta-item"><span class="cm-label">Role</span><span class="cm-value">Associate Product Manager Application</span></div>
+    <div class="cover-meta-item"><span class="cm-label">Date</span><span class="cm-value">April 2026</span></div>
+  </div>
+</section>
+
+<!-- 2 CONTEXT -->
+<section class="slide" id="context">
+  <div class="rv"><div class="sn">01 — Context</div><h2 class="st">GreyLabs AI at a Glance</h2><p class="sl">India's voice OS for BFSI. 50+ institutions, Series A in Oct 2025. Voice Agents, Speech Analytics, Email Analytics — tuned for banks, NBFCs, insurers.</p></div>
+  <div class="sr rv">
+    <div><div class="sv">50+</div><div class="slab">BFSI institutions today</div></div>
+    <div><div class="sv">300+</div><div class="slab">Target institutions (next phase)</div></div>
+    <div><div class="sv">₹85 Cr</div><div class="slab">Series A (Oct 2025)</div></div>
+    <div><div class="sv">5</div><div class="slab">Use cases — Sales, Service, Collections, Renewals, PIVC</div></div>
+  </div>
+  <div class="cg c3 rv">
+    <div class="card"><div class="cl">Wedge</div><h3>Voice OS for BFSI</h3><p>Unlike analytics-only tools, GreyLabs delivers an agentic voice stack — autonomous calls across the BFSI lifecycle, not just post-call QA.</p></div>
+    <div class="card"><div class="cl">Customers</div><h3>Banks, NBFCs, Insurers</h3><p>RBL, AU, IDFC FIRST, Axis Finance, Piramal, Motilal Oswal, Fibe, Groww — plus SBI Life and ICICI Prudential Life on the insurance side.</p></div>
+    <div class="card"><div class="cl">Tension</div><h3>Scale vs Compliance</h3><p>Scaling from 50 to 300 institutions means every new client adds regulatory exposure. The product bar goes up, not down.</p></div>
+  </div>
+</section>
+
+<!-- 3 PROBLEM -->
+<section class="slide" id="problem">
+  <div class="rv"><div class="sn">02 — Problem</div><h2 class="st">PIVC Is Broken — and It Is a Compliance Landmine</h2><p class="sl">Every life insurance policy in India requires a Pre-Issuance Verification Call before the policy is issued. Today it is slow, expensive, and often non-compliant — and it is exactly the use case an autonomous voice agent should own.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><div class="cl">Scale</div><h3>Millions of Calls/Month</h3><p>Every new life policy sold across LIC, HDFC Life, SBI Life, ICICI Prudential, Tata AIA needs PIVC. Industry-wide that is crores of calls per year — most still human-led.</p></div>
+    <div class="card"><div class="cl">Cost</div><h3>₹25-40 per Call</h3><p>Human agents reading scripts for 8-12 minutes. At even 1 million calls a month for one large insurer, that is ₹25-40 Cr per month just in agent cost.</p></div>
+    <div class="card"><div class="cl">Completion</div><h3>First-Attempt Success Below 40%</h3><p>Customers do not pick up, hang up mid-call, or fail to confirm they understood. Retries pile up. Some policies stay "pending issuance" for weeks.</p></div>
+    <div class="card"><div class="cl">Regulation</div><h3>IRDAI Tightening</h3><p>Missed disclosures — cooling-off period, free-look, premium commitment — are a direct compliance breach. IRDAI has been penalising mis-selling actively since 2024.</p></div>
+  </div>
+  <div class="co rv"><p><strong>The product question:</strong> Can GreyLabs autonomise 70% of life-insurance PIVC calls while raising first-attempt completion rate and shrinking compliance-breach rate below 0.5%?</p></div>
+</section>
+
+<!-- 4 USERS -->
+<section class="slide" id="users">
+  <div class="rv"><div class="sn">03 — Users</div><h2 class="st">Four Users. Four Different Wins.</h2><p class="sl">A PIVC call sits between four stakeholders, each with different incentives. The product only works if all four feel better off.</p></div>
+  <div class="cg c4 rv">
+    <div class="card"><div class="cl">End customer</div><h3>The Policyholder</h3><p>Bought a ₹3L/yr premium policy on a Zoom call with an agent. Gets a PIVC 2 days later. Wants it over quickly. Rarely listens. Later — "I never knew I could not surrender in the first 5 years."</p></div>
+    <div class="card"><div class="cl">Internal</div><h3>Insurance Agent</h3><p>Commission is stuck till PIVC passes. Wants fast completion. Blames PIVC team if customer fails. Often coaches customer to say yes.</p></div>
+    <div class="card"><div class="cl">Buyer at insurer</div><h3>Compliance Head</h3><p>Signs off every PIVC process to IRDAI. Biggest fear — a mis-sold policy reaches a regulator complaint. Needs full audit trail on every call.</p></div>
+    <div class="card"><div class="cl">Buyer at insurer</div><h3>Ops Head</h3><p>Owns the PIVC call centre P&amp;L. Pressure to cut cost per call, raise throughput, meet IRDAI service levels. Open to AI if compliance head signs off.</p></div>
+  </div>
+  <div class="co rv"><p>The insight — the policyholder does not want PIVC at all. They want the policy. The AI's job is to make PIVC feel short and clear enough that the customer actually listens — and to leave behind an audit trail that lets the insurer sleep at night.</p></div>
+</section>
+
+<!-- 5 RCA -->
+<section class="slide" id="rca">
+  <div class="rv"><div class="sn">04 — Root Cause</div><h2 class="st">Why PIVC Calls Fail Today</h2><p class="sl">The same script design that passes IRDAI on paper fails customers in the call. Five compounding reasons.</p></div>
+  <div class="rv">
+    <table class="t"><thead><tr><th>Layer</th><th>What's Happening</th><th>Effect</th></tr></thead><tbody>
+      <tr><td>Script length</td><td>8-12 mandatory disclosures read back to back, often in English.</td><td>Customer tunes out by disclosure 3. Confirms "yes" without listening.</td></tr>
+      <tr><td>Language mismatch</td><td>Customer speaks Hindi/Tamil/Telugu in daily life. Script is English-heavy.</td><td>Technical terms like "surrender value" or "cooling-off" do not land. Customer fakes comprehension.</td></tr>
+      <tr><td>Retry logic</td><td>If the customer misses a call, ops retries at random times later that day.</td><td>40-50% miss the first call. Queue builds. Retries eat agent time.</td></tr>
+      <tr><td>No adaptation</td><td>Same flat script for every customer — 22-yr-old grad and 58-yr-old retiree.</td><td>Young customers bored. Older customers lost. Neither absorbs the key terms.</td></tr>
+      <tr><td>Audit gap</td><td>Call recording stored as a flat audio file with no structured confirmation log.</td><td>If IRDAI audits, compliance team manually listens to recordings. Slow and risky.</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<!-- 6 CURRENT -->
+<section class="slide" id="current">
+  <div class="rv"><div class="sn">05 — Current State</div><h2 class="st">Where GreyLabs Likely Is Today</h2><p class="sl">Informed guess based on the public product description. The gap is where the next version of PIVC lives.</p></div>
+  <div class="rv">
+    <table class="t"><thead><tr><th>Capability</th><th>Current (likely)</th><th>Gap</th></tr></thead><tbody>
+      <tr><td>Voice agent script</td><td>Configurable per insurer, multi-lingual baseline.</td><td>Flat script — no real-time adaptation by customer age, language, literacy.</td></tr>
+      <tr><td>Comprehension check</td><td>Yes/no confirmations at end of disclosures.</td><td>Customer can say yes without understanding. No real comprehension signal.</td></tr>
+      <tr><td>Retry strategy</td><td>Rule-based — retry after X hours if no answer.</td><td>No predictive time-of-day model per customer. Retries often waste credits.</td></tr>
+      <tr><td>Compliance logging</td><td>Raw audio + transcript stored.</td><td>No structured disclosure-by-disclosure log. Audit still needs a human.</td></tr>
+      <tr><td>Pre-call</td><td>Direct cold call to customer.</td><td>No warm-up SMS/WhatsApp — customer is surprised, more likely to reject.</td></tr>
+      <tr><td>Exception routing</td><td>Fallback to human agent if AI fails to match script.</td><td>No emotion or confusion trigger. Confused customers complete "yes" falsely.</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<!-- 7 COMPETITIVE -->
+<section class="slide" id="competitive">
+  <div class="rv"><div class="sn">06 — Competitive</div><h2 class="st">Why This Is GreyLabs' To Win</h2><p class="sl">The competitive set for BFSI voice AI is crowded, but PIVC-grade autonomy for insurers is an open lane.</p></div>
+  <div class="tc rv">
+    <div class="card" style="border-left:2px solid var(--green)"><div class="cl" style="color:var(--green)">GreyLabs — Agentic Voice</div><p style="margin-top:8px">Ground-up voice agents for BFSI. Handles autonomous outbound calls across five use cases. Already shipping with life insurers (SBI Life, ICICI Pru).</p><p style="margin-top:12px;font-size:13px"><strong>Edge:</strong> Insurance customer base + agentic stack. PIVC is a natural wedge — high-volume, rule-driven, regulated.</p></div>
+    <div class="card" style="border-left:2px solid var(--red)"><div class="cl" style="color:var(--red)">Observe / Uniphore / Gong</div><p style="margin-top:8px">Conversation analytics. Analyse calls after the fact — QA, sentiment, compliance review. They do not run the call.</p><p style="margin-top:12px;font-size:13px"><strong>Observation:</strong> Helpful for "did the agent comply?", but cannot replace the agent. Analytics is downstream — PIVC is upstream.</p></div>
+  </div>
+  <div class="co rv"><p>The market has analytics covered. The gap is an autonomous voice agent trusted enough by compliance teams to do PIVC without a human. GreyLabs is structurally closer than anyone else to owning this.</p></div>
+</section>
+
+<!-- 8 FRAMEWORK -->
+<section class="slide" id="framework">
+  <div class="rv"><div class="sn">07 — Solution</div><h2 class="st">Staged Autonomy</h2><p class="sl">Not every PIVC call should be fully autonomous. Stage the automation by customer risk profile and call complexity.</p></div>
+  <div class="flow rv">
+    <div class="fs"><span class="ft" style="color:var(--green)">Stage 1 — Simple</span><h4>Fully autonomous</h4><p>Standard term policy, customer answered warm-up. AI runs the full PIVC. ~60% of calls.</p></div>
+    <div class="fs"><span class="ft" style="color:var(--warm)">Stage 2 — Adaptive</span><h4>AI + soft check-in</h4><p>Older customer, regional language, ULIP or annuity product. AI adapts pace, adds comprehension checks. ~25% of calls.</p></div>
+    <div class="fs"><span class="ft" style="color:var(--red)">Stage 3 — Hybrid</span><h4>AI opens, human closes</h4><p>High-premium policy or customer showing confusion. AI handles disclosures, human agent confirms. ~10% of calls.</p></div>
+    <div class="fs"><span class="ft" style="color:var(--text3)">Stage 4 — Exception</span><h4>Route to human</h4><p>Customer agitated, using escalation keywords, or grievance-shaped. Straight to a certified human agent. ~5% of calls.</p></div>
+  </div>
+  <div class="co rv"><p>The shift — "all humans" or "all AI" is the wrong frame. Stage autonomy by risk. AI handles the 60% where the script is clean. Humans handle the 5% where judgment is non-negotiable. Everything in between is a hybrid.</p></div>
+</section>
+
+<!-- 9 WARMUP -->
+<section class="slide" id="warmup">
+  <div class="rv"><div class="sn">08 — Feature</div><h2 class="st">Warm-Up Pre-Call</h2><p class="sl">The single biggest lever on first-attempt completion — a 2-hour heads-up. Costs almost nothing, changes the answer rate.</p></div>
+  <div class="tc rv">
+    <div>
+      <ol class="steps">
+        <li>Policy issued → trigger schedules PIVC for T+24h at a predicted best-call time per customer.</li>
+        <li>2 hours before call — WhatsApp template drops: <em>"Your HDFC Life policy #12345 is ready. We'll call in 2 hours to confirm you understand the terms. Takes 5 minutes."</em></li>
+        <li>Message includes a one-tap "reschedule" button. Customer can move the slot without a human.</li>
+        <li>Call fires. Customer is expecting it. Pickup rate lifts.</li>
+        <li>If no-answer, system reschedules using time-of-day model — not blind retry.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px"><h3>Answer Rate Lifts ~20 pts</h3><p>Warm-up + one-tap reschedule brings first-attempt pickup from ~50% to ~70% based on cold-vs-warm outbound benchmarks.</p><span class="tag h">Biggest single lever</span></div>
+      <div class="card" style="margin-bottom:14px"><h3>Near-Zero Cost</h3><p>WhatsApp Business template at ~25 paise per message. ~₹0.25 to save a ~₹25 failed call.</p><span class="tag h">100x ROI on warm-up</span></div>
+      <div class="card" style="margin-bottom:14px"><h3>Builds Trust</h3><p>Customer is not surprised. They feel informed, not ambushed. Better engagement through the whole call.</p><span class="tag m">Trust win</span></div>
+      <div class="card"><h3>Shrinks Ops Queue</h3><p>Fewer retries means the insurer's ops team stops drowning in "no answer" cases.</p><span class="tag l">Ops cost drop</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 CHECKPOINTS -->
+<section class="slide" id="checkpoints">
+  <div class="rv"><div class="sn">09 — Feature</div><h2 class="st">Comprehension Checkpoints</h2><p class="sl">Compliance needs more than a "yes". This feature turns a passive confirmation into a live check the customer actually understood.</p></div>
+  <div class="tc rv">
+    <div>
+      <ol class="steps">
+        <li>AI reads disclosure (example — cooling-off period).</li>
+        <li>Instead of "do you understand?", AI asks a micro-question in the customer's language: <em>"If you cancel in the first 15 days, what happens to your money?"</em></li>
+        <li>Speech-to-text interprets answer. Correct paraphrase in any language passes.</li>
+        <li>If answer is wrong or "I don't know", AI explains once more in simpler words and asks again.</li>
+        <li>After two failed attempts, mark this disclosure as "needs human" and continue the rest of the call.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px"><h3>Real Comprehension, Not Fake Yes</h3><p>Customer who says yes without understanding now fails the checkpoint. That is the exact mis-selling pattern IRDAI is chasing.</p><span class="tag h">Regulatory win</span></div>
+      <div class="card" style="margin-bottom:14px"><h3>Skip for Confident Customers</h3><p>Customer who paraphrases correctly on the first checkpoint — reduce frequency on later disclosures. Short call for confident users.</p><span class="tag m">UX win</span></div>
+      <div class="card"><h3>Escalation Signal</h3><p>Two failed checkpoints = flag for human follow-up. Do not fake-pass the PIVC. Fewer complaints 6 months later.</p><span class="tag l">Compliance signal</span></div>
+    </div>
+  </div>
+  <div class="co rv"><p>This is the single feature that would change GreyLabs from "fast voice agent" to "safer voice agent than a human." A human agent reads monotonously. An AI that actually checks comprehension is structurally better at catching mis-selling.</p></div>
+</section>
+
+<!-- 11 AUDIT -->
+<section class="slide" id="audit">
+  <div class="rv"><div class="sn">10 — Feature</div><h2 class="st">Structured Compliance Audit Trail</h2><p class="sl">The piece that lets the insurer's compliance head sleep. Every disclosure, every customer response, logged as structured data — not just audio.</p></div>
+  <div class="tc rv">
+    <div>
+      <ol class="steps">
+        <li>Before call — pull the current regulatory requirements from a central policy DB (IRDAI circulars, insurer-specific clauses). Agent never holds regulatory text statically.</li>
+        <li>During call — every required disclosure tagged with timestamp, customer response verbatim, comprehension check result.</li>
+        <li>End of call — generate a structured report: 10/10 disclosures covered, 9/10 comprehension checks passed, 1 flagged for human review.</li>
+        <li>Compliance head dashboard — every call searchable by pass/fail, by customer, by policy type. Can pull an audit-ready PDF in one click.</li>
+        <li>When IRDAI updates rules (eg. DPDP Act 2026), compliance team updates central DB once. All agents across all insurers pull the new version automatically.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px"><h3>Defensible to Regulator</h3><p>Compliance can hand IRDAI a per-call audit trail. Not a 10-minute audio file — a structured confirmation of every disclosure.</p><span class="tag h">Buyer decision lever</span></div>
+      <div class="card" style="margin-bottom:14px"><h3>Zero Static Regulatory Text</h3><p>Model never answers regulatory questions from memory. All policy text comes from a live DB. Fix a rule centrally — every call follows the new rule next day.</p><span class="tag h">Prevents drift</span></div>
+      <div class="card"><h3>Sales Unlock</h3><p>This is the feature that moves the compliance head from "block" to "champion" — turns GreyLabs from a tech vendor into a compliance partner.</p><span class="tag l">GTM unlock</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 METRICS -->
+<section class="slide" id="metrics">
+  <div class="rv"><div class="sn">11 — Metrics</div><h2 class="st">Projected Impact — 12 Months In</h2><p class="sl">Conservative estimates based on voice-AI benchmarks in Indian BFSI and public PIVC pain points.</p></div>
+  <div class="tc rv">
+    <div class="card">
+      <div class="cl">Completion &amp; Quality</div>
+      <div class="mb"><div class="mbh"><span>First-attempt completion</span><span>35% → 65%</span></div><div class="mbt"><div class="mbf g" style="width:65%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>Compliance pass rate</span><span>92% → 99.5%</span></div><div class="mbt"><div class="mbf g" style="width:99%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>Mis-selling flag rate</span><span>−40%</span></div><div class="mbt"><div class="mbf b" style="width:40%"></div></div></div>
+    </div>
+    <div class="card">
+      <div class="cl">Ops &amp; Cost</div>
+      <div class="mb"><div class="mbh"><span>Cost per call</span><span>₹25-40 → ₹3-5</span></div><div class="mbt"><div class="mbf w" style="width:80%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>Call duration (avg)</span><span>10 min → 4 min</span></div><div class="mbt"><div class="mbf g" style="width:40%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>Human agents needed</span><span>−70%</span></div><div class="mbt"><div class="mbf b" style="width:70%"></div></div></div>
+    </div>
+  </div>
+  <div class="sr rv" style="margin-top:32px;justify-content:center;gap:64px">
+    <div style="text-align:center"><div class="sv" style="font-size:36px">~₹0.25</div><div class="slab">Warm-up WhatsApp cost</div></div>
+    <div style="text-align:center"><div class="sv" style="font-size:36px">~₹4</div><div class="slab">Avg AI-led PIVC cost</div></div>
+    <div style="text-align:center"><div class="sv" style="font-size:36px">&lt;0.5%</div><div class="slab">Compliance breach target</div></div>
+    <div style="text-align:center"><div class="sv" style="font-size:36px">60%</div><div class="slab">Fully autonomous calls</div></div>
+  </div>
+  <div class="rv" style="margin-top:32px">
+    <table class="t"><thead><tr><th>North Star</th><th>Definition</th><th>Baseline</th><th>Target (12m)</th></tr></thead><tbody>
+      <tr><td>Autonomous PIVC rate</td><td>Calls completed without human touch</td><td>~0%</td><td>60%</td></tr>
+      <tr><td>First-attempt completion</td><td>PIVC passed on the first call</td><td>~35%</td><td>65%</td></tr>
+      <tr><td>Compliance pass rate</td><td>Calls that pass internal audit</td><td>92%</td><td>99.5%</td></tr>
+      <tr><td>Cost per PIVC</td><td>Blended cost across all calls</td><td>₹25-40</td><td>₹5-8</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<!-- 13 PRIORITY -->
+<section class="slide" id="priority">
+  <div class="rv"><div class="sn">12 — Prioritisation</div><h2 class="st">What to Ship First</h2><p class="sl">Quick wins unlock the feature. Strategic bets scale it. Stay honest about what is a quarter and what is a year.</p></div>
+  <div class="mx rv">
+    <div class="mq q1"><h4>Quick Wins — Low Effort, High Impact</h4><ul>
+      <li><strong>Warm-up pre-call</strong> — WhatsApp template + scheduling slot. 2-3 week build. Biggest lever on completion rate.</li>
+      <li><strong>Time-of-day retry model</strong> — Predict best call slot per customer. Small ML model on call history. 3-4 weeks.</li>
+      <li><strong>Basic compliance log</strong> — Tag every disclosure with timestamp + customer response. Config change, not a new product.</li>
+    </ul></div>
+    <div class="mq q2"><h4>Strategic Bets — High Effort, High Impact</h4><ul>
+      <li><strong>Comprehension checkpoints</strong> — Micro-question + multilingual paraphrase matching. 8-12 weeks. This is the compliance moat.</li>
+      <li><strong>Staged autonomy routing</strong> — Rule engine + risk model to decide fully-AI vs hybrid vs human per call. 8-10 weeks.</li>
+      <li><strong>Central policy DB + live pull</strong> — Compliance team updates rules once, every agent follows. 10-12 weeks.</li>
+    </ul></div>
+    <div class="mq q3"><h4>Fill-ins — Low Effort, Lower Impact</h4><ul>
+      <li><strong>Post-call summary SMS</strong> — Summary of what customer confirmed. 1 sprint. Nice trust signal.</li>
+      <li><strong>Agent performance dashboard</strong> — Internal analytics for insurer ops head. Existing Speech Analytics can be extended.</li>
+    </ul></div>
+    <div class="mq q4"><h4>Avoid — High Effort, Low Impact</h4><ul>
+      <li><strong>Full emotion AI model</strong> — Expensive to build, low marginal lift over keyword-based escalation triggers.</li>
+      <li><strong>Video PIVC</strong> — Does not match customer device reality in Tier-2/3 India. Audio-first is right.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 14 RISKS -->
+<section class="slide" id="risks">
+  <div class="rv"><div class="sn">13 — Risks</div><h2 class="st">What Could Go Wrong</h2><p class="sl">Each feature has an edge case that kills it if ignored. Name it, measure it, mitigate it.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><h3>Customer Fails Comprehension They Actually Understood</h3><p>False negative on a checkpoint annoys the customer and adds friction. <strong>Mitigation:</strong> Paraphrase matching via LLM-as-judge with a manual review sample. Two-chance policy.</p><span class="tag r">Precision risk</span></div>
+    <div class="card"><h3>IRDAI Rejects AI-Only PIVC</h3><p>Regulator may insist on human-in-loop for any AI PIVC. <strong>Mitigation:</strong> Lead with hybrid. Build compliance head as champion. Share audit trail with IRDAI early for informal sign-off.</p><span class="tag r">Regulatory risk</span></div>
+    <div class="card"><h3>Language Model Drift</h3><p>Accuracy drops on regional languages as usage shifts across insurers. <strong>Mitigation:</strong> Per-insurer eval set of 100 gold-standard calls. Weekly drift check. Auto-flag for retraining.</p><span class="tag r">Model risk</span></div>
+    <div class="card"><h3>Agent Channel Pushback</h3><p>Insurance agents may push back — they prefer coaching customers through a human PIVC to protect commission. <strong>Mitigation:</strong> Ship agent-facing dashboard showing faster commission payout with AI PIVC. Align incentives.</p><span class="tag r">Channel risk</span></div>
+  </div>
+  <div class="co rv"><p>Every acceleration lever adds a new failure mode. The product job is to find the calibration point — fast enough for ops to adopt, safe enough for compliance to sign off, honest enough that the customer is never mis-sold.</p></div>
+</section>
+
+<!-- 15 SUMMARY -->
+<section class="slide slide-end" id="summary">
+  <div class="rv"><div class="sn">14 — Summary</div><h2 class="st">The Playbook</h2><p class="sl" style="margin-left:auto;margin-right:auto">Do not try to fully autonomise PIVC overnight. Stage it. Win the compliance head first, not the ops head. Build the audit trail as hard as you build the voice.</p></div>
+  <div class="cg c3 rv" style="max-width:900px;margin:0 auto">
+    <div class="card" style="text-align:center;border-top:2px solid var(--green)"><div class="cl">Ship Now</div><p style="margin-top:8px">Warm-up pre-call<br>Time-of-day retry<br>Basic compliance log</p><span class="tag l">Weeks</span></div>
+    <div class="card" style="text-align:center;border-top:2px solid var(--blue)"><div class="cl">Build Next</div><p style="margin-top:8px">Comprehension checkpoints<br>Staged autonomy router<br>Central policy DB</p><span class="tag m">Months</span></div>
+    <div class="card" style="text-align:center;border-top:2px solid var(--warm)"><div class="cl">Bet Big</div><p style="margin-top:8px">60% fully autonomous PIVC<br>Compliance head as champion<br>Expand pattern to other regulated calls</p><span class="tag r">Quarters</span></div>
+  </div>
+  <div class="rv" style="margin-top:72px">
+    <p style="font-family:var(--serif);font-size:28px">Ashwini Mishra</p>
+    <p style="color:var(--text3);font-size:14px;margin-top:6px">Associate Product Manager — AI, Growth &amp; Conversion at Qodex.AI</p>
+    <p style="color:var(--text3);font-size:13px;margin-top:4px">mishrash662@gmail.com · linkedin.com/in/ashwini-mishra-998320251</p>
+    <a href="mailto:mishrash662@gmail.com" class="end-link">Get in Touch →</a>
+  </div>
+</section>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('vis')})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>o.observe(e));
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('prog').style.width=(window.scrollY/h*100)+'%'});
+const ss=document.querySelectorAll('.slide[id]'),ll=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let c='';ss.forEach(s=>{if(window.scrollY>=s.offsetTop-150)c=s.id});ll.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+c)})});
+</script>
+</body>
+</html>
