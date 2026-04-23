@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreyLabs Connect — Voice AI for India's SMB Economy — Ashwini Mishra</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Satoshi:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf8;
+  --bg-card: #ffffff;
+  --bg-subtle: #f3f3f0;
+  --accent: #1a1a1a;
+  --warm: #c4632a;
+  --warm-dim: rgba(196,99,42,0.08);
+  --red: #b91c1c;
+  --red-dim: rgba(185,28,28,0.07);
+  --green: #15803d;
+  --green-dim: rgba(21,128,61,0.07);
+  --blue: #1e40af;
+  --blue-dim: rgba(30,64,175,0.07);
+  --text: #1a1a1a;
+  --text2: #1a1a1a;
+  --text3: #4a4a4a;
+  --border: #e8e8e4;
+  --border2: #d4d4cf;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'Satoshi', -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6}
+
+.progress{height:2px;background:var(--warm);position:fixed;top:0;left:0;z-index:101;transition:width .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 48px;display:flex;justify-content:space-between;align-items:center;background:rgba(250,250,248,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:2.5px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;flex-wrap:wrap}
+.nav-links a{font-size:11px;color:var(--text3);text-decoration:none;padding:5px 12px;border-radius:100px;transition:all .25s;font-weight:500}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.active{color:var(--text);background:var(--bg-subtle)}
+
+.slide{min-height:100vh;scroll-snap-align:start;padding:120px 80px 80px;display:flex;flex-direction:column;justify-content:center;max-width:1200px;margin:0 auto}
+.slide-cover{align-items:flex-start;padding-top:160px}
+.cover-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:72px;align-items:center;width:100%}
+.cover-left{display:flex;flex-direction:column}
+.cover-video{position:relative;padding-bottom:56.25%;height:0;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:var(--bg-card);box-shadow:0 4px 24px rgba(0,0,0,0.06);opacity:0;animation:fi .6s .7s forwards}
+.cover-video iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+.cover-eyebrow{font-family:var(--mono);font-size:11px;color:var(--warm);letter-spacing:3px;text-transform:uppercase;margin-bottom:40px;opacity:0;animation:fi .6s .1s forwards}
+.cover-title{font-family:var(--serif);font-size:clamp(44px,6vw,76px);line-height:1.08;font-weight:400;max-width:820px;margin-bottom:32px;letter-spacing:-.02em;opacity:0;animation:fi .6s .25s forwards}
+.cover-title em{font-style:italic;color:var(--warm)}
+.cover-rule{width:64px;height:1.5px;background:var(--warm);margin-bottom:32px;opacity:0;animation:fi .6s .4s forwards}
+.cover-sub{font-size:17px;color:var(--text2);max-width:540px;line-height:1.7;margin-bottom:64px;opacity:0;animation:fi .6s .5s forwards}
+.cover-meta{display:flex;gap:40px;opacity:0;animation:fi .6s .65s forwards}
+.cover-meta-item{display:flex;flex-direction:column;gap:4px}
+.cm-label{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase}
+.cm-value{font-size:14px;font-weight:500}
+
+.sn{font-family:var(--mono);font-size:10px;color:var(--warm);letter-spacing:3px;margin-bottom:20px;text-transform:uppercase}
+.st{font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:400;line-height:1.12;margin-bottom:16px;letter-spacing:-.015em}
+.sl{font-size:16px;color:var(--text2);max-width:720px;line-height:1.7;margin-bottom:56px}
+
+.cg{display:grid;gap:16px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:1fr 1fr 1fr}.c4{grid-template-columns:1fr 1fr 1fr 1fr}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:28px;transition:border-color .25s}
+.card:hover{border-color:var(--border2)}
+.cl{font-family:var(--mono);font-size:10px;color:var(--warm);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.card h3{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:10px;line-height:1.25}
+.card p{font-size:14px;color:var(--text2);line-height:1.65}
+.tag{display:inline-block;font-size:10px;font-family:var(--mono);padding:4px 10px;border-radius:100px;margin-top:14px;font-weight:500;letter-spacing:.5px}
+.tag.h{background:var(--green-dim);color:var(--green)}.tag.m{background:var(--warm-dim);color:var(--warm)}.tag.l{background:var(--blue-dim);color:var(--blue)}.tag.r{background:var(--red-dim);color:var(--red)}
+
+.sr{display:flex;gap:48px;margin-bottom:48px;flex-wrap:wrap}
+.sv{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.02em}
+.slab{font-size:12px;color:var(--text3);margin-top:8px;font-weight:500}
+
+table.t{width:100%;border-collapse:collapse}
+table.t th{text-align:left;padding:12px 16px;font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase;border-bottom:1.5px solid var(--border2);font-weight:500}
+table.t td{padding:16px;font-size:14px;color:var(--text2);border-bottom:1px solid var(--border);line-height:1.55;vertical-align:top}
+table.t td:first-child{color:var(--text);font-weight:500}
+
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--border);border-radius:12px;overflow:hidden}
+.fs{padding:28px 22px;background:var(--bg-card)}
+.ft{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:block}
+.fs h4{font-family:var(--serif);font-size:18px;font-weight:400;margin-bottom:10px}
+.fs p{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* Architecture flowchart */
+.arch{display:grid;gap:14px}
+.arch-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:stretch}
+.arch-box{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:18px 16px;min-height:96px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.arch-box .ab-tag{font-family:var(--mono);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--warm);margin-bottom:6px}
+.arch-box h5{font-family:var(--serif);font-size:15px;font-weight:400;margin-bottom:4px;line-height:1.2}
+.arch-box p{font-size:11px;color:var(--text3);line-height:1.4}
+.arch-arrow{display:flex;align-items:center;justify-content:center;color:var(--warm);font-family:var(--mono);font-size:18px;font-weight:700}
+.arch-legend{display:flex;gap:32px;margin-top:24px;flex-wrap:wrap}
+.arch-legend-item{font-size:12px;color:var(--text3);font-family:var(--mono)}
+.arch-legend-item::before{content:"●";color:var(--warm);margin-right:6px}
+
+.arch-vert{display:grid;grid-template-columns:1fr;gap:0;max-width:640px;margin:0 auto}
+.arch-vert .arch-box{margin-bottom:4px}
+.arch-vert-arrow{height:22px;display:flex;align-items:center;justify-content:center;color:var(--warm);font-size:16px;font-family:var(--mono)}
+
+.tc{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.steps{list-style:none;padding:0;counter-reset:s}
+.steps li{counter-increment:s;padding:16px 0 16px 44px;position:relative;font-size:14px;color:var(--text2);line-height:1.65;border-bottom:1px solid var(--border)}
+.steps li:last-child{border:none}
+.steps li::before{content:counter(s);position:absolute;left:0;top:17px;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:11px;display:flex;align-items:center;justify-content:center}
+
+.co{border-left:2px solid var(--warm);padding:20px 28px;background:var(--warm-dim);border-radius:0 8px 8px 0;margin:32px 0}
+.co p{font-size:14px;color:var(--text);line-height:1.7}
+.co cite{font-size:11px;color:var(--text3);display:block;margin-top:10px;font-style:normal;font-family:var(--mono)}
+
+.mb{margin:14px 0}
+.mbh{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.mbh span:first-child{color:var(--text2)}.mbh span:last-child{font-family:var(--mono);font-weight:500;font-size:12px}
+.mbt{height:6px;background:var(--bg-subtle);border-radius:3px;overflow:hidden}
+.mbf{height:100%;border-radius:3px;transition:width 1.2s}
+.mbf.w{background:var(--warm)}.mbf.g{background:var(--green)}.mbf.b{background:var(--blue)}
+
+.mx{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:12px;overflow:hidden}
+.mq{padding:28px;background:var(--bg-card)}
+.mq h4{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.mq ul{list-style:none;padding:0}
+.mq li{font-size:13px;color:var(--text2);padding:10px 0;border-bottom:1px solid var(--border);line-height:1.55}
+.mq li:last-child{border:none}
+.q1 h4{color:var(--green)}.q2 h4{color:var(--blue)}.q3 h4{color:var(--warm)}.q4 h4{color:var(--red)}
+
+.code{background:var(--bg-subtle);border:1px solid var(--border);border-radius:8px;padding:14px 18px;font-family:var(--mono);font-size:12px;color:var(--text);line-height:1.6;white-space:pre-wrap;overflow-x:auto;margin:12px 0}
+
+.slide-end{align-items:center;text-align:center}
+.end-link{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border:1.5px solid var(--text);color:var(--text);font-weight:500;font-size:14px;border-radius:100px;text-decoration:none;margin-top:36px;transition:all .25s}
+.end-link:hover{background:var(--text);color:var(--bg)}
+
+@keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.rv{opacity:0;transform:translateY(14px);transition:all .5s cubic-bezier(.25,1,.5,1)}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .slide{padding:100px 24px 48px}
+  .c2,.c3,.c4{grid-template-columns:1fr}
+  .tc{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .arch-row{grid-template-columns:1fr}
+  .arch-arrow{transform:rotate(90deg);padding:4px 0}
+  .sr{flex-wrap:wrap;gap:32px}
+  .mx{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .cover-meta{flex-direction:column;gap:20px}
+  .cover-grid{grid-template-columns:1fr;gap:48px}
+  nav{padding:12px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="prog"></div>
+<nav>
+  <div class="nav-brand">Case Study</div>
+  <div class="nav-links">
+    <a href="#cover">Cover</a><a href="#context">Context</a><a href="#problem">Problem</a><a href="#market">Market</a><a href="#users">Users</a><a href="#tam">TAM/SAM/SOM</a><a href="#gap">Gap</a><a href="#solution">Solution</a><a href="#arch">Architecture</a><a href="#tech">How It Works</a><a href="#flow">Flow</a><a href="#aipm">AI PM</a><a href="#benefits">Benefits</a><a href="#metrics">Metrics</a><a href="#priority">Priority</a><a href="#risks">Risks</a><a href="#summary">Summary</a>
+  </div>
+</nav>
+
+<!-- 1 COVER -->
+<section class="slide slide-cover" id="cover">
+  <div class="cover-grid">
+    <div class="cover-left">
+      <div class="cover-eyebrow">Product Management Case Study — GreyLabs AI</div>
+      <h1 class="cover-title">GreyLabs <em>Connect</em>: Voice AI for India's SMB Economy</h1>
+      <div class="cover-rule"></div>
+      <p class="cover-sub">Expanding from 300 BFSI institutions to 10 million small businesses through a self-serve connector layer that plugs voice AI into the Indian POS stack.</p>
+      <div class="cover-meta">
+        <div class="cover-meta-item"><span class="cm-label">Author</span><span class="cm-value">Ashwini Mishra</span></div>
+        <div class="cover-meta-item"><span class="cm-label">Role</span><span class="cm-value">Associate Product Manager Application</span></div>
+        <div class="cover-meta-item"><span class="cm-label">Date</span><span class="cm-value">April 2026</span></div>
+      </div>
+    </div>
+    <div class="cover-video">
+      <iframe src="https://www.loom.com/embed/798f9b8f32314245b0f7c5f039c9cd92" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- 2 CONTEXT -->
+<section class="slide" id="context">
+  <div class="rv"><div class="sn">01 — Context</div><h2 class="st">GreyLabs AI Today</h2><p class="sl">A Series-A voice-AI company that dominates BFSI — and is capped by the same motion that got it here.</p></div>
+  <div class="sr rv">
+    <div><div class="sv">50+</div><div class="slab">BFSI institutions today</div></div>
+    <div><div class="sv">300+</div><div class="slab">Next-phase target</div></div>
+    <div><div class="sv">₹85 Cr</div><div class="slab">Series A, Oct 2025</div></div>
+    <div><div class="sv">3</div><div class="slab">Products — Voice, Speech, Email</div></div>
+  </div>
+  <div class="cg c3 rv">
+    <div class="card"><div class="cl">Motion</div><h3>Enterprise Sales</h3><p>6-9 month cycles. Named account execs. Custom implementation for every client. Economics work at ₹50 L - ₹5 Cr annual contracts, not below.</p></div>
+    <div class="card"><div class="cl">Onboarding</div><h3>4-6 Week Bespoke Builds</h3><p>Each bank gets a tailored agent — scripts, voice persona, compliance rules, integrations. Solutions engineering is the bottleneck.</p></div>
+    <div class="card"><div class="cl">Ceiling</div><h3>~300 Institutions Max</h3><p>Indian BFSI has ~45 scheduled commercial banks, ~12,000 NBFCs, ~60 insurers. The serious buyers cap out in the mid-hundreds.</p></div>
+  </div>
+</section>
+
+<!-- 3 PROBLEM -->
+<section class="slide" id="problem">
+  <div class="rv"><div class="sn">02 — Problem</div><h2 class="st">BFSI Is Not the Biggest Market</h2><p class="sl">The same technology GreyLabs ships to banks could serve 10-15 million small Indian businesses — but the current motion cannot reach a single one of them.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><div class="cl">Who is being left out</div><h3>The Entire Indian SMB Economy</h3><p>Clinics, retail shops, tuition centres, local service providers, salons, travel agents, hotels, real-estate brokers. They all handle customer calls manually. They all want AI. None of them can buy GreyLabs today.</p></div>
+    <div class="card"><div class="cl">Why they are locked out</div><h3>Three Structural Walls</h3><p>Enterprise pricing — minimum ₹50 L contracts are impossible for SMBs. Custom implementation — a 6-week build does not fit a ₹10 lakh/year business. Integration complexity — an SMB has no engineering team to wire up APIs.</p></div>
+    <div class="card"><div class="cl">What it costs them</div><h3>Manual Call Handling</h3><p>Shopkeepers miss calls while serving customers. Clinics double-book appointments. Tuition centres chase fee reminders by hand. Service providers lose leads by not calling back fast enough.</p></div>
+    <div class="card"><div class="cl">What it costs GreyLabs</div><h3>An Order-of-Magnitude Larger TAM</h3><p>BFSI addressable revenue caps in the low thousand crores. The SMB layer underneath it is tens of thousands of crores — and entirely unserved by agentic voice AI today.</p></div>
+  </div>
+  <div class="co rv"><p><strong>The product question:</strong> How does GreyLabs reach the SMB tier without cannibalising the enterprise motion, without collapsing unit economics, and without a 6-week onboarding for every new customer?</p></div>
+</section>
+
+<!-- 4 MARKET CONTEXT -->
+<section class="slide" id="market">
+  <div class="rv"><div class="sn">03 — Market Context</div><h2 class="st">Why This Window Is Open Now</h2><p class="sl">Mobile penetration, digital POS adoption, and rising call-centre labour cost have all crossed thresholds in the last 24 months.</p></div>
+  <div class="cg c4 rv">
+    <div class="card"><div class="cl">Smartphone users</div><h3>700M+ and Growing</h3><p>India crossed ~70% mobile penetration. A decade ago this was 40%. Every new smartphone user is a potential inbound call for someone's business.</p></div>
+    <div class="card"><div class="cl">Digital POS</div><h3>10-15M SMBs on Khatabook, Paytm, Dukaan, Dotpe</h3><p>The digital spine of Indian SMB now exists. Owners log books, accept payments, message customers — all inside apps that could expose a voice-AI toggle.</p></div>
+    <div class="card"><div class="cl">Labour cost</div><h3>Call-centre Seats at ₹25K-40K/month</h3><p>Even entry-level customer-handling labour is expensive for a shop doing ₹5 L/month revenue. AI voice at ₹5-8 per call is already cheaper than the first human hire.</p></div>
+    <div class="card"><div class="cl">AI awareness</div><h3>Every SMB Owner Has Heard of AI</h3><p>2024-25 changed this. SMB owners are not anti-AI — they are waiting for something they can actually switch on without a consultant.</p></div>
+  </div>
+  <div class="co rv"><p>Two years ago this was not a shippable bet — digital POS was too thin, mobile usage too patchy, and SMBs had not yet encountered AI. All three gates are open now.</p></div>
+</section>
+
+<!-- 5 USERS -->
+<section class="slide" id="users">
+  <div class="rv"><div class="sn">04 — Users</div><h2 class="st">Who GreyLabs Connect Actually Serves</h2><p class="sl">Not "SMBs" in the abstract — six concrete archetypes, each already running a digital POS, each handling 10-500 customer calls a day by hand.</p></div>
+  <div class="rv">
+    <table class="t"><thead><tr><th>SMB Type</th><th>Customer Interactions / Day</th><th>Call Use Cases That AI Can Own</th></tr></thead><tbody>
+      <tr><td>Local clinic / dentist</td><td>50-200 appointments, reschedules, reminders</td><td>Appointment booking, confirmation, rescheduling, missed-visit follow-up</td></tr>
+      <tr><td>Retail shop (online + offline)</td><td>100-500 orders, delivery questions</td><td>Order confirmation, delivery update, return request intake, customer support</td></tr>
+      <tr><td>Tuition centre / small school</td><td>30-150 parent interactions</td><td>Fee reminders, attendance updates, performance review scheduling</td></tr>
+      <tr><td>Local service (plumber, electrician, salon, gym)</td><td>20-80 lead + service calls</td><td>Lead qualification, service scheduling, payment follow-up, customer feedback</td></tr>
+      <tr><td>Small hotel / homestay</td><td>10-60 reservation interactions</td><td>Booking confirmation, check-in coordination, upsell, review prompt</td></tr>
+      <tr><td>Travel agent / local tour operator</td><td>30-120 itinerary + policy interactions</td><td>Itinerary confirmation, document verification, cancellation handling</td></tr>
+    </tbody></table>
+  </div>
+  <div class="co rv"><p>Every one of these businesses already spends one-quarter to half the owner's time on routine calls. GreyLabs Connect moves that time back to the business — which is the real product value.</p></div>
+</section>
+
+<!-- 6 TAM/SAM/SOM -->
+<section class="slide" id="tam">
+  <div class="rv"><div class="sn">05 — Market Sizing</div><h2 class="st">TAM, SAM, SOM</h2><p class="sl">Conservative numbers. Even at 1% penetration of the serviceable market, the SMB layer dwarfs the BFSI motion.</p></div>
+  <div class="cg c3 rv">
+    <div class="card"><div class="cl">TAM</div><h3>~₹7,680 Cr / year</h3><p>~64M Indian SMBs. Average willingness to spend on AI voice + customer ops: ₹12K/year (₹1K/month). Ceiling assumes full digital adoption — not realistic today, but directional.</p></div>
+    <div class="card"><div class="cl">SAM</div><h3>~₹1,200 - 1,800 Cr / year</h3><p>~10-15M SMBs actively on digital POS or business software today (Khatabook, Paytm Business, Dukaan, Shopify India, WhatsApp Business). These are reachable through integrations, not bespoke sales.</p></div>
+    <div class="card"><div class="cl">SOM (Year 3)</div><h3>~₹12 - 18 Cr ARR</h3><p>1% of SAM captured by Year 3. ~1 lakh SMBs, each spending ~₹1,200/year blended across voice + email + analytics. Cautious — the real upside is SMB retention and multi-year value.</p></div>
+  </div>
+  <div class="rv">
+    <table class="t"><thead><tr><th>Segment</th><th>Count (approx)</th><th>Addressable via Connect</th><th>Blended ARPU target</th></tr></thead><tbody>
+      <tr><td>Retail SMBs on digital POS</td><td>~6-8 M</td><td>High — easy POS integration</td><td>₹900-1,500 / year</td></tr>
+      <tr><td>Service providers (clinic, salon, tuition)</td><td>~3-4 M</td><td>High — WhatsApp + Calendar integration</td><td>₹1,200-2,000 / year</td></tr>
+      <tr><td>Travel / hospitality SMBs</td><td>~1 M</td><td>Medium — longer sales cycle</td><td>₹1,800-3,000 / year</td></tr>
+      <tr><td>Tier-1 BFSI (current GreyLabs)</td><td>~300</td><td>Enterprise motion, separate team</td><td>₹50 L - ₹5 Cr / year</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<!-- 7 THE GAP -->
+<section class="slide" id="gap">
+  <div class="rv"><div class="sn">06 — The Gap</div><h2 class="st">There Is No Connector Layer for SMB Voice AI</h2><p class="sl">Enterprise voice AI exists (Gnani, Observe.AI, GreyLabs today). SMB digital software exists (Khatabook, Paytm Business, Dukaan). Nobody sits between them.</p></div>
+  <div class="tc rv">
+    <div class="card" style="border-left:2px solid var(--green)"><div class="cl" style="color:var(--green)">The Composio analogy</div><p style="margin-top:8px">Composio bundled 1,000+ MCPs behind one CLI. Developers stopped writing OAuth flows, API wrappers, or integration glue. They added Composio and got access to every connected tool through one layer.</p><p style="margin-top:12px;font-size:13px"><strong>The unlock:</strong> Composio's value is not the individual tool — it is the bundling. Each tool alone was always buildable. The layer is what made them accessible in one motion.</p></div>
+    <div class="card" style="border-left:2px solid var(--warm)"><div class="cl" style="color:var(--warm)">What SMBs need, same shape</div><p style="margin-top:8px">Bundle voice AI + speech analytics + email analytics + POS customer data behind one connector. The SMB owner does not write a single line of integration code. They click a toggle in their POS, grant OAuth scopes, and an AI voice agent goes live for their business.</p><p style="margin-top:12px;font-size:13px"><strong>The unlock:</strong> GreyLabs's value becomes the layer, not the underlying models. Competitors can build voice AI. They cannot build the layer without rebuilding the POS relationships.</p></div>
+  </div>
+  <div class="co rv"><p>The gap is not a missing feature. It is a missing distribution layer. The company that builds this layer owns SMB voice AI for the next decade.</p></div>
+</section>
+
+<!-- 8 SOLUTION -->
+<section class="slide" id="solution">
+  <div class="rv"><div class="sn">07 — Solution</div><h2 class="st">GreyLabs Connect</h2><p class="sl">A self-serve integration layer that wires GreyLabs's Voice, Speech and Email AI into the Indian SMB stack. Go-live in under an hour, no engineering required.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><div class="cl">What it is</div><h3>A Connector, Not a New Product</h3><p>Connect is a thin OAuth + webhook + config layer that sits on top of GreyLabs's existing AI stack. The underlying models, voice infrastructure, and analytics are the same ones serving BFSI today.</p></div>
+    <div class="card"><div class="cl">Pre-built integrations</div><h3>Top 8 Indian SMB Platforms</h3><p>Khatabook, Paytm for Business, Dukaan, Dotpe, Shopify India, WhatsApp Business API, Google Calendar, Zoho Books. Cover the majority of digital-first SMBs in one release.</p></div>
+    <div class="card"><div class="cl">Pricing</div><h3>Usage-Based, No Lock-In</h3><p>₹5-8 per AI-handled call. ₹0.25 per AI-drafted email. Free tier: 50 calls/month. No minimum commit, no contracts. Cancel anytime.</p></div>
+    <div class="card"><div class="cl">Go-live experience</div><h3>Click → OAuth → Live in &lt; 1 Hour</h3><p>Owner toggles "AI Voice Agent" inside their POS. OAuth flow grants GreyLabs scoped access. Business-type template auto-loaded. Owner makes a test call. Production.</p></div>
+  </div>
+</section>
+
+<!-- 9 ARCHITECTURE FLOWCHART -->
+<section class="slide" id="arch">
+  <div class="rv"><div class="sn">08 — System Architecture</div><h2 class="st">How the Layer Sits</h2><p class="sl">Six components, two data flows. Event in from the POS, action out from GreyLabs, outcome back to the POS, analytics back to the owner.</p></div>
+  <div class="arch rv">
+    <div class="arch-row">
+      <div class="arch-box"><span class="ab-tag">1 · Source</span><h5>SMB POS</h5><p>Khatabook, Dukaan, Paytm, WhatsApp Business</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span class="ab-tag">2 · Auth</span><h5>Connect / OAuth 2.0</h5><p>Scoped tokens, stored encrypted, refreshable</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span class="ab-tag">3 · Event</span><h5>Webhook Inbox</h5><p>POS POSTs events (new order, missed call, reminder due)</p></div>
+      <div class="arch-arrow">→</div>
+    </div>
+    <div class="arch-row">
+      <div class="arch-box"><span class="ab-tag">4 · Router</span><h5>Event Classifier</h5><p>Decides — voice call, email, or no-action. Picks model (Haiku / Sonnet) based on complexity</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span class="ab-tag">5 · Execute</span><h5>GreyLabs Voice / Email Agent</h5><p>Runs the call or email using customer context pulled from POS via API</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span class="ab-tag">6 · Analytics</span><h5>Speech + Email Analytics</h5><p>Transcription, sentiment, outcome tagging, compliance log</p></div>
+      <div class="arch-arrow">↓</div>
+    </div>
+    <div class="arch-row">
+      <div class="arch-box"><span class="ab-tag">7 · Loop back</span><h5>Reverse Webhook to POS</h5><p>Outcome written back: call resolved / escalated / failed. Customer status updated inside owner's POS</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span class="ab-tag">8 · Owner view</span><h5>Connect Dashboard</h5><p>Live view of calls handled, cost today, flagged interactions needing review</p></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-box"><span class="ab-tag">9 · Feedback</span><h5>Owner Rating / Eval</h5><p>Thumbs up/down per call feeds the model eval loop; retraining trigger at drift</p></div>
+      <div class="arch-arrow"></div>
+    </div>
+  </div>
+  <div class="arch-legend rv">
+    <div class="arch-legend-item">Forward path — event to action</div>
+    <div class="arch-legend-item">Reverse path — outcome to owner</div>
+    <div class="arch-legend-item">Feedback — owner rating to model</div>
+  </div>
+</section>
+
+<!-- 10 TECHNICAL HOW-IT-WORKS -->
+<section class="slide" id="tech">
+  <div class="rv"><div class="sn">09 — Technical Layer</div><h2 class="st">How to Actually Build This</h2><p class="sl">Under the hood — auth, event contract, AI layer, cost routing, feedback. Enough detail that an engineering lead could start sizing.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><div class="cl">Step 1 · Auth</div><h3>OAuth 2.0 with Scoped Permissions</h3><p>Each POS exposes an OAuth 2.0 app. Connect requests scopes: <code style="font-family:var(--mono);font-size:12px">read:customers</code>, <code style="font-family:var(--mono);font-size:12px">read:orders</code>, <code style="font-family:var(--mono);font-size:12px">write:interactions</code>. Refresh tokens stored server-side, encrypted at rest. No customer PII leaves POS unless call context requires it.</p></div>
+    <div class="card"><div class="cl">Step 2 · Event ingress</div><h3>Webhook Contract</h3><p>POS POSTs a signed webhook to <code style="font-family:var(--mono);font-size:12px">/connect/events</code> whenever something happens (new order, cart abandon, missed call, reminder due). Idempotency key + HMAC signature verification. Queue-backed ingestion so POS never waits for GreyLabs processing.</p></div>
+  </div>
+  <div class="rv" style="margin-top:14px">
+    <div class="code">POST /connect/events
+X-GreyLabs-Signature: sha256=...
+{
+  "event_id": "evt_01HX...",
+  "merchant_id": "smb_482",
+  "type": "order.placed",
+  "customer": { "phone": "+91...", "lang": "hi" },
+  "payload": { "order_id": "ord_...", "total": 1499 }
+}</div>
+  </div>
+  <div class="cg c2 rv" style="margin-top:24px">
+    <div class="card"><div class="cl">Step 3 · Route</div><h3>Event Classifier</h3><p>A lightweight classifier decides: does this event need a voice call, an email, or nothing? Rule-based for the first 80% of events (order-placed → confirmation call). Small LLM (Haiku-class) for ambiguous cases. Latency budget: 200 ms per routing decision.</p></div>
+    <div class="card"><div class="cl">Step 4 · Model routing</div><h3>Cost-Aware Model Selection</h3><p>Simple confirmations run on smallest available model. Multi-turn conversations upgrade to larger models mid-call based on complexity heuristic (customer pushback, unusual query). Keeps inference cost at ₹2-4 per completed call vs ₹8-12 if everything used the premium model.</p></div>
+    <div class="card"><div class="cl">Step 5 · Execute</div><h3>Voice + Email Agent</h3><p>Voice agent dials customer (Exotel / Plivo for telephony). Uses customer context from POS (name, language, order history). Follows business-type script template. Every disclosure and customer response logged with timestamp.</p></div>
+    <div class="card"><div class="cl">Step 6 · Feedback loop</div><h3>Reverse Webhook + Rating</h3><p>After each interaction, GreyLabs POSTs outcome back to POS via reverse webhook. Owner sees it in their existing interface. Thumbs up / down from owner feeds the eval set — per-merchant golden sets emerge in 30-60 days.</p></div>
+  </div>
+</section>
+
+<!-- 11 PRODUCT FLOW -->
+<section class="slide" id="flow">
+  <div class="rv"><div class="sn">10 — Product Flow</div><h2 class="st">From POS Toggle to Live Agent</h2><p class="sl">The SMB owner's journey — from the moment they see "Enable AI Voice Agent" inside Khatabook or Dukaan to their first autonomous call.</p></div>
+  <div class="tc rv">
+    <div>
+      <ol class="steps">
+        <li>Owner logs into POS. Sees a new toggle: <em>"Enable GreyLabs AI Voice Agent"</em> inside the customer-management section.</li>
+        <li>Clicks. POS redirects to Connect's OAuth consent screen. Owner sees exactly which scopes are requested.</li>
+        <li>Grants consent. Redirected back to POS with a success state. Connect receives scoped refresh token.</li>
+        <li>Connect reads business category metadata from POS (clinic, retail, service). Auto-loads matching voice template — tone, script, disclosures.</li>
+        <li>Owner is walked through a 2-minute setup: business name, voice persona (male/female, Hindi/English/Tamil), greeting sample.</li>
+        <li>Owner makes a test call to their own agent. Hears the voice, confirms the script is right, adjusts the greeting if needed.</li>
+        <li>Goes live. Next incoming event from POS fires the full flow. Agent handles the call autonomously.</li>
+        <li>Owner gets a morning digest: calls handled, outcomes, cost, calls flagged for their review.</li>
+      </ol>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:14px"><h3>Time to First Call</h3><p>Target: under 1 hour from OAuth click to first autonomous call. Compare to current enterprise onboarding of 4-6 weeks.</p><span class="tag h">100x faster to value</span></div>
+      <div class="card" style="margin-bottom:14px"><h3>No Engineering Required</h3><p>Owner never writes a line of code, never touches an API key, never reads an integration doc. The POS is the only surface.</p><span class="tag h">True self-serve</span></div>
+      <div class="card"><h3>Owner Trust Built In</h3><p>Test call + first-week review digest are the trust-building ritual. Owner sees exactly what the AI is doing before scaling up reliance.</p><span class="tag l">Activation via trust</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 AI PM DEEP-DIVE -->
+<section class="slide" id="aipm">
+  <div class="rv"><div class="sn">11 — AI PM Deep-Dive</div><h2 class="st">The Metric Stack an AI PM Would Actually Run</h2><p class="sl">Classical product metrics, plus AI-specific quality layer, plus unit economics, plus trust. Not a laundry list — a decision-making stack.</p></div>
+  <div class="rv">
+    <table class="t"><thead><tr><th>Layer</th><th>Metric</th><th>Why it matters</th></tr></thead><tbody>
+      <tr><td>Activation</td><td>Test call completed + first autonomous call resolved within 48h of OAuth</td><td>Product-specific activation event. Behavioural proxy for "owner got value."</td></tr>
+      <tr><td>Quality (AI)</td><td>Owner-rated call success rate, hallucination flag rate, safety violation rate</td><td>Owner thumbs up/down + automated eval. Separate from satisfaction — trust signal.</td></tr>
+      <tr><td>Unit economics</td><td>Inference cost per call, margin per merchant cohort, cost per successful interaction</td><td>Usage-based pricing means margin collapses if inference is not controlled.</td></tr>
+      <tr><td>Trust ladder</td><td>% of merchants who graduate from low-stakes (confirmation) to medium-stakes (payment reminders) use cases within 60 days</td><td>Trust is a measurable behaviour — deeper use cases are only used by trusting customers.</td></tr>
+      <tr><td>Cohorts</td><td>By business type (clinic, retail, service) — not demographics. ~5 persistent cohorts.</td><td>Quality varies by vertical. Each cohort needs its own eval set and threshold.</td></tr>
+      <tr><td>Leading indicators</td><td>Week-1 autonomous call volume per merchant, time-to-first-call, test-call completion rate</td><td>Predict retention before D30 retention shows up.</td></tr>
+      <tr><td>Guardrails</td><td>Safety refusal rate, fallback-to-human rate, p95 latency</td><td>Optimising the North Star alone will cause regressions here. Watch these independently.</td></tr>
+    </tbody></table>
+  </div>
+  <div class="co rv"><p>The most important PM move is staging trust. Start every merchant on a narrow, low-risk use case (order confirmation) and widen the scope only after quality is proven on their specific data. Do not let merchants auto-enable high-stakes actions on day one. That is how an SMB-scale product avoids a BFSI-grade catastrophe.</p></div>
+</section>
+
+<!-- 13 BENEFITS -->
+<section class="slide" id="benefits">
+  <div class="rv"><div class="sn">12 — Projected Benefits</div><h2 class="st">What Each Side Gains</h2><p class="sl">A real platform play creates value for all three sides. Framed conservatively.</p></div>
+  <div class="cg c3 rv">
+    <div class="card"><div class="cl">For the SMB</div><h3>60-80% Call Time Reclaimed</h3><p>Owner stops answering routine calls. Clinic handles 150 appointment confirmations without a human. Shopkeeper gets delivery-update calls off the plate. ₹5-8 per call beats the first human hire on day one.</p><span class="tag h">Direct owner ROI</span></div>
+    <div class="card"><div class="cl">For GreyLabs</div><h3>TAM 30-50x Larger</h3><p>BFSI addressable ARR caps at low thousand crores. SMB layer is tens of thousands of crores. Self-serve motion drops CAC by 100x vs enterprise. Data flywheel compounds on millions of SMB calls — model quality widens the moat with every integration.</p><span class="tag h">Category-defining bet</span></div>
+    <div class="card"><div class="cl">For the market</div><h3>AI Voice Democratised</h3><p>For the first time, an Indian small-business owner can access the same AI voice stack as a Tier-1 bank — without an enterprise contract, consultant, or tech team. Lowers the cost of starting and running a small business in India.</p><span class="tag l">Infrastructure play</span></div>
+  </div>
+</section>
+
+<!-- 14 METRICS -->
+<section class="slide" id="metrics">
+  <div class="rv"><div class="sn">13 — Metrics</div><h2 class="st">North Star and Guardrails</h2><p class="sl">One North Star, a small set of guardrails, a few leading indicators. Discipline over dashboard theatre.</p></div>
+  <div class="tc rv">
+    <div class="card">
+      <div class="cl">North Star</div>
+      <div class="mb"><div class="mbh"><span>Merchants with ≥ 50 autonomous calls / week</span><span>Year 3 target: 100,000</span></div><div class="mbt"><div class="mbf g" style="width:70%"></div></div></div>
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)">This metric captures both adoption (merchant onboarded) and depth (AI actually running the business) in a single number. Flat = no one is using the product meaningfully.</p>
+    </div>
+    <div class="card">
+      <div class="cl">Guardrails</div>
+      <div class="mb"><div class="mbh"><span>Safety violation rate</span><span>&lt; 0.5%</span></div><div class="mbt"><div class="mbf w" style="width:5%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>Hallucination flag rate</span><span>&lt; 2%</span></div><div class="mbt"><div class="mbf w" style="width:20%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>p95 latency</span><span>&lt; 2.0s</span></div><div class="mbt"><div class="mbf w" style="width:30%"></div></div></div>
+      <div class="mb"><div class="mbh"><span>Cost per call</span><span>&lt; ₹4 blended</span></div><div class="mbt"><div class="mbf w" style="width:40%"></div></div></div>
+    </div>
+  </div>
+  <div class="sr rv" style="margin-top:32px;justify-content:center;gap:56px">
+    <div style="text-align:center"><div class="sv" style="font-size:36px">&lt; 1h</div><div class="slab">Target time-to-first-call</div></div>
+    <div style="text-align:center"><div class="sv" style="font-size:36px">&gt; 80%</div><div class="slab">Test-call completion rate</div></div>
+    <div style="text-align:center"><div class="sv" style="font-size:36px">50-60%</div><div class="slab">Target gross margin</div></div>
+    <div style="text-align:center"><div class="sv" style="font-size:36px">&gt; 35%</div><div class="slab">D30 merchant retention</div></div>
+  </div>
+</section>
+
+<!-- 15 PRIORITY -->
+<section class="slide" id="priority">
+  <div class="rv"><div class="sn">14 — Prioritisation</div><h2 class="st">What to Ship, in What Order</h2><p class="sl">Quick wins unlock distribution. Strategic bets lock in the moat. Avoid the obvious traps.</p></div>
+  <div class="mx rv">
+    <div class="mq q1"><h4>Quick Wins — Low Effort, High Impact</h4><ul>
+      <li><strong>Connector for top 3 POS</strong> — Khatabook, Dukaan, Paytm for Business. Biggest merchant coverage in one release. 6-8 weeks.</li>
+      <li><strong>Templates for top 5 business types</strong> — clinic, retail, tuition, local service, hotel. Reusable, not bespoke.</li>
+      <li><strong>Owner test call flow</strong> — non-negotiable for trust. 2 weeks of product work.</li>
+      <li><strong>Morning digest email</strong> — daily outcome summary. Pure engagement loop.</li>
+    </ul></div>
+    <div class="mq q2"><h4>Strategic Bets — High Effort, High Impact</h4><ul>
+      <li><strong>Business-type auto-detection</strong> — small model classifies business from POS metadata + first 10 transactions. Removes the "pick your business type" step.</li>
+      <li><strong>Per-merchant golden eval set</strong> — first 50 calls become that merchant's eval set. Quality stops drifting silently.</li>
+      <li><strong>Voice persona customisation</strong> — female / male, tone, language mix. Drives stickiness.</li>
+      <li><strong>WhatsApp Business integration</strong> — where Indian SMBs actually live. 10-12 week build.</li>
+    </ul></div>
+    <div class="mq q3"><h4>Fill-ins — Lower Impact, Cheap</h4><ul>
+      <li><strong>Cost-alert thresholds</strong> — let merchants cap daily spend.</li>
+      <li><strong>Shareable transcript links</strong> — useful for small-team operations.</li>
+      <li><strong>Referral credits</strong> — SMB-native viral loop.</li>
+    </ul></div>
+    <div class="mq q4"><h4>Avoid — High Effort, Low Return</h4><ul>
+      <li><strong>Marketplace of all POS on day one</strong> — 3 deep integrations beat 30 shallow ones.</li>
+      <li><strong>White-label for BFSI clients</strong> — direct conflict with enterprise motion.</li>
+      <li><strong>Building own POS</strong> — scope creep of the worst kind. Partner, never compete.</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 16 RISKS -->
+<section class="slide" id="risks">
+  <div class="rv"><div class="sn">15 — Risks</div><h2 class="st">What Could Kill This</h2><p class="sl">Every strategic bet has a shape of failure. Name each risk, say how you mitigate, keep the honesty.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><h3>POS Partners Build Their Own Voice AI</h3><p>Khatabook / Paytm could build a generic AI feature themselves. <strong>Mitigation:</strong> Move fast, lock in exclusive-ish partnerships with revenue share. Our models are already better. Become the default before they notice.</p><span class="tag r">Channel risk</span></div>
+    <div class="card"><h3>Enterprise Team Feels Deprioritised</h3><p>BFSI revenue still pays the bills. Enterprise team could see SMB as a distraction. <strong>Mitigation:</strong> Separate P&amp;L, separate leadership. Shared AI stack, independent go-to-market. Document the non-cannibalisation explicitly.</p><span class="tag r">Internal risk</span></div>
+    <div class="card"><h3>Unit Economics Collapse at Scale</h3><p>Heavy SMB usage with no price levers = margin death. <strong>Mitigation:</strong> Usage-based pricing from day one. Model routing to keep inference cost down. Daily cost-per-merchant monitoring. Flat pricing is a trap.</p><span class="tag r">Financial risk</span></div>
+    <div class="card"><h3>TRAI / RBI Restrictions on Outbound AI Voice</h3><p>India has strict DND rules. Automated outbound calls without consent are a landmine. <strong>Mitigation:</strong> Opt-in by the end customer at purchase time. Clear "this is an AI agent from &lt;business&gt;" disclosure. Honour DND registry. Log everything.</p><span class="tag r">Regulatory risk</span></div>
+    <div class="card"><h3>Quality Drift Across 10,000 Merchants</h3><p>BFSI has 50 clients; eval is tractable. SMB is 10,000+; eval becomes a fire hose. <strong>Mitigation:</strong> Per-cohort golden eval sets. Automated LLM-as-judge on 5% sample. Human review only of flagged calls. Drift alerts at cohort level, not global.</p><span class="tag r">Quality risk</span></div>
+    <div class="card"><h3>SMBs Churn After Month One</h3><p>Novelty wears off, retention fails. <strong>Mitigation:</strong> Activation ritual + morning digest keep daily engagement. Clear ROI number ("you saved ₹X and 4 hours this week") in the digest. Churn alerts fire at 21 days of declining usage.</p><span class="tag r">Retention risk</span></div>
+  </div>
+</section>
+
+<!-- 17 SUMMARY -->
+<section class="slide slide-end" id="summary">
+  <div class="rv"><div class="sn">16 — Summary</div><h2 class="st">The Playbook</h2><p class="sl" style="margin-left:auto;margin-right:auto">Do not build GreyLabs SMB as a new product. Build it as a connector layer on the existing AI stack. Ship integration breadth, stage trust carefully, watch unit economics like a hawk.</p></div>
+  <div class="cg c3 rv" style="max-width:900px;margin:0 auto">
+    <div class="card" style="text-align:center;border-top:2px solid var(--green)"><div class="cl">Ship Now</div><p style="margin-top:8px">Top-3 POS connector<br>Business-type templates<br>Owner test-call flow<br>Morning digest loop</p><span class="tag l">Weeks</span></div>
+    <div class="card" style="text-align:center;border-top:2px solid var(--blue)"><div class="cl">Build Next</div><p style="margin-top:8px">Auto-detection<br>Per-merchant eval sets<br>Voice persona customisation<br>WhatsApp integration</p><span class="tag m">Months</span></div>
+    <div class="card" style="text-align:center;border-top:2px solid var(--warm)"><div class="cl">Bet Big</div><p style="margin-top:8px">Connect as the default AI layer for Indian SMBs<br>Data flywheel from 10,000+ merchants<br>Category ownership before competitors notice</p><span class="tag r">Quarters</span></div>
+  </div>
+  <div class="rv" style="margin-top:72px">
+    <p style="font-family:var(--serif);font-size:28px">Ashwini Mishra</p>
+    <p style="color:var(--text3);font-size:14px;margin-top:6px">Associate Product Manager — AI, Growth &amp; Conversion at Qodex.AI</p>
+    <p style="color:var(--text3);font-size:13px;margin-top:4px">mishrash662@gmail.com · linkedin.com/in/ashwini-mishra-998320251</p>
+    <a href="mailto:mishrash662@gmail.com" class="end-link">Get in Touch →</a>
+  </div>
+</section>
+
+<script>
+const o=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&e.target.classList.add('vis')})},{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>o.observe(e));
+window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('prog').style.width=(window.scrollY/h*100)+'%'});
+const ss=document.querySelectorAll('.slide[id]'),ll=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{let c='';ss.forEach(s=>{if(window.scrollY>=s.offsetTop-150)c=s.id});ll.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+c)})});
+</script>
+</body>
+</html>
