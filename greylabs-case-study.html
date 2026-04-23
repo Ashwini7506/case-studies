@@ -20,8 +20,8 @@
   --blue: #1e40af;
   --blue-dim: rgba(30,64,175,0.07);
   --text: #1a1a1a;
-  --text2: #6b6b6b;
-  --text3: #999;
+  --text2: #1a1a1a;
+  --text3: #4a4a4a;
   --border: #e8e8e4;
   --border2: #d4d4cf;
   --serif: 'Instrument Serif', Georgia, serif;
@@ -133,7 +133,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 <nav>
   <div class="nav-brand">Case Study</div>
   <div class="nav-links">
-    <a href="#cover">Cover</a><a href="#context">Context</a><a href="#problem">Problem</a><a href="#users">Users</a><a href="#rca">RCA</a><a href="#current">Current</a><a href="#competitive">Competitive</a><a href="#framework">Framework</a><a href="#warmup">Warm-up</a><a href="#checkpoints">Checkpoints</a><a href="#audit">Audit</a><a href="#metrics">Metrics</a><a href="#priority">Priority</a><a href="#risks">Risks</a><a href="#summary">Summary</a>
+    <a href="#cover">Cover</a><a href="#context">Context</a><a href="#pivc">What is PIVC</a><a href="#problem">Cost Problem</a><a href="#opportunity">Opportunity</a><a href="#rca">Why Not Solved</a><a href="#current">Current</a><a href="#competitive">Competitive</a><a href="#framework">Framework</a><a href="#warmup">Warm-up</a><a href="#checkpoints">Checkpoints</a><a href="#audit">Audit</a><a href="#metrics">Metrics</a><a href="#priority">Priority</a><a href="#risks">Risks</a><a href="#summary">Summary</a>
   </div>
 </nav>
 
@@ -166,47 +166,62 @@ table.t td:first-child{color:var(--text);font-weight:500}
   </div>
 </section>
 
-<!-- 3 PROBLEM -->
-<section class="slide" id="problem">
-  <div class="rv"><div class="sn">02 — Problem</div><h2 class="st">PIVC Is Broken — and It Is a Compliance Landmine</h2><p class="sl">Every life insurance policy in India requires a Pre-Issuance Verification Call before the policy is issued. Today it is slow, expensive, and often non-compliant — and it is exactly the use case an autonomous voice agent should own.</p></div>
+<!-- 3 WHAT IS PIVC -->
+<section class="slide" id="pivc">
+  <div class="rv"><div class="sn">02 — Background</div><h2 class="st">What Is PIVC?</h2><p class="sl">A mandatory cost the insurance industry has to pay on every single policy. It does not generate revenue. It does not improve the product. It exists because the regulator says so.</p></div>
   <div class="cg c2 rv">
-    <div class="card"><div class="cl">Scale</div><h3>Millions of Calls/Month</h3><p>Every new life policy sold across LIC, HDFC Life, SBI Life, ICICI Prudential, Tata AIA needs PIVC. Industry-wide that is crores of calls per year — most still human-led.</p></div>
-    <div class="card"><div class="cl">Cost</div><h3>₹25-40 per Call</h3><p>Human agents reading scripts for 8-12 minutes. At even 1 million calls a month for one large insurer, that is ₹25-40 Cr per month just in agent cost.</p></div>
-    <div class="card"><div class="cl">Completion</div><h3>First-Attempt Success Below 40%</h3><p>Customers do not pick up, hang up mid-call, or fail to confirm they understood. Retries pile up. Some policies stay "pending issuance" for weeks.</p></div>
-    <div class="card"><div class="cl">Regulation</div><h3>IRDAI Tightening</h3><p>Missed disclosures — cooling-off period, free-look, premium commitment — are a direct compliance breach. IRDAI has been penalising mis-selling actively since 2024.</p></div>
+    <div class="card"><div class="cl">Definition</div><h3>Pre-Issuance Verification Call</h3><p>Before any life insurance policy above a premium threshold is issued, IRDAI requires the insurer to call the customer and confirm they understood what they bought — premium, term, surrender rules, cooling-off period.</p></div>
+    <div class="card"><div class="cl">Why it exists</div><h3>Stop Mis-Selling</h3><p>Insurance agents have historically mis-sold policies to customers who did not understand terms. PIVC is IRDAI's check. If customer cannot confirm understanding, the policy does not get issued.</p></div>
+    <div class="card"><div class="cl">Who pays</div><h3>The Insurer. 100%.</h3><p>PIVC is an operational expense. Call centre, agents, recording infrastructure, compliance review. None of this is billed back to the customer. It is pure overhead on every policy sold.</p></div>
+    <div class="card"><div class="cl">Business reality</div><h3>Regulatory Tax, Not Product</h3><p>No insurer wants to do PIVC. They have to. Every minute of a PIVC call is a cost with zero customer lifetime value lift. Whoever makes PIVC cheaper and safer owns a large, captive B2B opportunity.</p></div>
   </div>
-  <div class="co rv"><p><strong>The product question:</strong> Can GreyLabs autonomise 70% of life-insurance PIVC calls while raising first-attempt completion rate and shrinking compliance-breach rate below 0.5%?</p></div>
+  <div class="co rv"><p>Simple framing — PIVC is a fixed cost every Indian life insurer pays, every day, on every policy. GreyLabs' opportunity is to compress that cost from ₹25-40 per call to single-digit rupees, while making compliance stronger than a human-run process.</p></div>
 </section>
 
-<!-- 4 USERS -->
-<section class="slide" id="users">
-  <div class="rv"><div class="sn">03 — Users</div><h2 class="st">Four Users. Four Different Wins.</h2><p class="sl">A PIVC call sits between four stakeholders, each with different incentives. The product only works if all four feel better off.</p></div>
-  <div class="cg c4 rv">
-    <div class="card"><div class="cl">End customer</div><h3>The Policyholder</h3><p>Bought a ₹3L/yr premium policy on a Zoom call with an agent. Gets a PIVC 2 days later. Wants it over quickly. Rarely listens. Later — "I never knew I could not surrender in the first 5 years."</p></div>
-    <div class="card"><div class="cl">Internal</div><h3>Insurance Agent</h3><p>Commission is stuck till PIVC passes. Wants fast completion. Blames PIVC team if customer fails. Often coaches customer to say yes.</p></div>
-    <div class="card"><div class="cl">Buyer at insurer</div><h3>Compliance Head</h3><p>Signs off every PIVC process to IRDAI. Biggest fear — a mis-sold policy reaches a regulator complaint. Needs full audit trail on every call.</p></div>
-    <div class="card"><div class="cl">Buyer at insurer</div><h3>Ops Head</h3><p>Owns the PIVC call centre P&amp;L. Pressure to cut cost per call, raise throughput, meet IRDAI service levels. Open to AI if compliance head signs off.</p></div>
+<!-- 4 PROBLEM -->
+<section class="slide" id="problem">
+  <div class="rv"><div class="sn">03 — Cost Problem</div><h2 class="st">The Size of the Bill</h2><p class="sl">PIVC at industry scale is a crore-rupees-per-month line item on every large insurer's P&amp;L. And most of it is still humans on phones.</p></div>
+  <div class="cg c2 rv">
+    <div class="card"><div class="cl">Volume</div><h3>~40-60M PIVC Calls a Year</h3><p>India issued ~30M new life policies in FY25 across LIC, HDFC Life, SBI Life, ICICI Prudential, Tata AIA, Max Life and others. Each policy over the PIVC threshold triggers one call, often with retries — ballpark 40-60M calls per year industry-wide.</p></div>
+    <div class="card"><div class="cl">Unit cost</div><h3>₹25-40 per Call</h3><p>Human agent, 8-12 minutes of scripted reading, supervisor oversight, recording, audit sampling. For a large insurer issuing 1M policies a year, that is ~₹25-40 Cr/year on one compliance process.</p></div>
+    <div class="card"><div class="cl">Industry exposure</div><h3>₹1,500-2,500 Cr/Year</h3><p>Rough industry spend on PIVC operations annually. 100% of this is regulatory cost, not product. Every paisa saved flows straight to the insurer's bottom line.</p></div>
+    <div class="card"><div class="cl">Regulatory tail</div><h3>Fines Beyond the Call Cost</h3><p>IRDAI has been actively penalising mis-selling since 2024. A single mis-sold policy traced back to a failed PIVC can cost the insurer ₹1 Cr+ in fines, plus refund liability and brand damage.</p></div>
   </div>
-  <div class="co rv"><p>The insight — the policyholder does not want PIVC at all. They want the policy. The AI's job is to make PIVC feel short and clear enough that the customer actually listens — and to leave behind an audit trail that lets the insurer sleep at night.</p></div>
+  <div class="co rv"><p><strong>The question for GreyLabs:</strong> If you can cut per-call cost from ₹25-40 to ₹5-8 while making compliance audit-ready by default, how much of that ₹1,500-2,500 Cr industry spend is addressable — and how fast can you capture it?</p></div>
 </section>
 
-<!-- 5 RCA -->
+<!-- 5 OPPORTUNITY -->
+<section class="slide" id="opportunity">
+  <div class="rv"><div class="sn">04 — Opportunity</div><h2 class="st">Why Autonomous Voice Agents Fit PIVC Better Than Anything Else</h2><p class="sl">PIVC is the highest-fit use case for agentic voice AI in BFSI. The properties line up perfectly.</p></div>
+  <div class="cg c3 rv">
+    <div class="card"><div class="cl">Scripted</div><h3>Known Disclosures</h3><p>Every PIVC call reads from a fixed set of regulatory disclosures. Low script variation per insurer. Automation gets predictable outputs.</p></div>
+    <div class="card"><div class="cl">Rule-driven</div><h3>Binary Compliance Outcome</h3><p>Every disclosure has a yes/no confirmation step. Pass or fail. No subjective human judgement required mid-call.</p></div>
+    <div class="card"><div class="cl">High volume</div><h3>Millions a Month</h3><p>Justifies up-front model tuning and eval investment. Economics of autonomy kick in fast.</p></div>
+    <div class="card"><div class="cl">Captive buyer</div><h3>Regulator-Mandated</h3><p>Insurer cannot opt out of PIVC. Means they will pay for any vendor that reduces the cost without increasing regulatory risk.</p></div>
+    <div class="card"><div class="cl">Multilingual</div><h3>Fits Indian Reality</h3><p>PIVC is run across Hindi, Tamil, Telugu, Marathi, Bengali. Voice AI trained for Indian BFSI is structurally advantaged here.</p></div>
+    <div class="card"><div class="cl">Outcome-measurable</div><h3>Clear Metrics</h3><p>Cost per call, first-attempt completion, compliance pass rate. Insurer can see ROI inside a quarter. Short sales cycle.</p></div>
+  </div>
+  <div class="co rv"><p>Collections, sales, renewals — all have softer outcomes and higher human-judgement loads. PIVC has none of that complexity and all of the cost. It is the sharpest wedge GreyLabs has to prove autonomous voice in production.</p></div>
+</section>
+
+<!-- 6 RCA -->
 <section class="slide" id="rca">
-  <div class="rv"><div class="sn">04 — Root Cause</div><h2 class="st">Why PIVC Calls Fail Today</h2><p class="sl">The same script design that passes IRDAI on paper fails customers in the call. Five compounding reasons.</p></div>
+  <div class="rv"><div class="sn">05 — Why Not Solved</div><h2 class="st">Why PIVC Is Still Mostly Human</h2><p class="sl">Voice AI has existed for years. IVR has existed for decades. So why is every large insurer still running PIVC through call centres? Five structural reasons that are all solvable with agentic voice.</p></div>
   <div class="rv">
-    <table class="t"><thead><tr><th>Layer</th><th>What's Happening</th><th>Effect</th></tr></thead><tbody>
-      <tr><td>Script length</td><td>8-12 mandatory disclosures read back to back, often in English.</td><td>Customer tunes out by disclosure 3. Confirms "yes" without listening.</td></tr>
-      <tr><td>Language mismatch</td><td>Customer speaks Hindi/Tamil/Telugu in daily life. Script is English-heavy.</td><td>Technical terms like "surrender value" or "cooling-off" do not land. Customer fakes comprehension.</td></tr>
-      <tr><td>Retry logic</td><td>If the customer misses a call, ops retries at random times later that day.</td><td>40-50% miss the first call. Queue builds. Retries eat agent time.</td></tr>
-      <tr><td>No adaptation</td><td>Same flat script for every customer — 22-yr-old grad and 58-yr-old retiree.</td><td>Young customers bored. Older customers lost. Neither absorbs the key terms.</td></tr>
-      <tr><td>Audit gap</td><td>Call recording stored as a flat audio file with no structured confirmation log.</td><td>If IRDAI audits, compliance team manually listens to recordings. Slow and risky.</td></tr>
+    <table class="t"><thead><tr><th>Barrier</th><th>What's Happening</th><th>Cost to the Insurer</th></tr></thead><tbody>
+      <tr><td>Regulatory conservatism</td><td>Compliance teams will not sign off on AI-only PIVC without a strong audit trail and human fallback for edge cases.</td><td>Insurer stays on expensive human ops to avoid a ₹1 Cr+ IRDAI fine risk.</td></tr>
+      <tr><td>Accent + language complexity</td><td>PIVC runs across Hindi, Tamil, Telugu, Marathi, Bengali — plus tier-2/3 accents and noisy environments.</td><td>Off-the-shelf voice AI drops accuracy fast. Cost of a false comprehension pass is higher than a failed call.</td></tr>
+      <tr><td>Audit gap in existing tools</td><td>Current voice solutions give raw audio + transcript. Compliance still needs a human to listen and confirm disclosure-by-disclosure.</td><td>Ops cost is shifted, not removed. Human QA headcount stays the same.</td></tr>
+      <tr><td>No comprehension verification</td><td>IRDAI is tightening on mis-selling. A simple "yes/no" at the end of a disclosure no longer satisfies the spirit of the regulation.</td><td>Insurers carry growing legal risk even when calls technically pass.</td></tr>
+      <tr><td>Retry and connect overhead</td><td>40-50% of PIVC calls miss on first attempt. Retry logic in existing systems is rule-based, not predictive.</td><td>Each retry adds ₹15-30 of dialer, agent time, and stuck-policy working capital.</td></tr>
     </tbody></table>
   </div>
+  <div class="co rv"><p>Each of these is a product problem, not a tech ceiling. An agentic voice platform that ships comprehension-grade checks, audit-ready logs, predictive retry, and multilingual accuracy wins this category before the large incumbents notice.</p></div>
 </section>
 
 <!-- 6 CURRENT -->
 <section class="slide" id="current">
-  <div class="rv"><div class="sn">05 — Current State</div><h2 class="st">Where GreyLabs Likely Is Today</h2><p class="sl">Informed guess based on the public product description. The gap is where the next version of PIVC lives.</p></div>
+  <div class="rv"><div class="sn">06 — Current State</div><h2 class="st">Where GreyLabs Likely Is Today</h2><p class="sl">Informed guess based on the public product description. The gap is where the next version of PIVC lives.</p></div>
   <div class="rv">
     <table class="t"><thead><tr><th>Capability</th><th>Current (likely)</th><th>Gap</th></tr></thead><tbody>
       <tr><td>Voice agent script</td><td>Configurable per insurer, multi-lingual baseline.</td><td>Flat script — no real-time adaptation by customer age, language, literacy.</td></tr>
@@ -221,7 +236,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 7 COMPETITIVE -->
 <section class="slide" id="competitive">
-  <div class="rv"><div class="sn">06 — Competitive</div><h2 class="st">Why This Is GreyLabs' To Win</h2><p class="sl">The competitive set for BFSI voice AI is crowded, but PIVC-grade autonomy for insurers is an open lane.</p></div>
+  <div class="rv"><div class="sn">07 — Competitive</div><h2 class="st">Why This Is GreyLabs' To Win</h2><p class="sl">The competitive set for BFSI voice AI is crowded, but PIVC-grade autonomy for insurers is an open lane.</p></div>
   <div class="tc rv">
     <div class="card" style="border-left:2px solid var(--green)"><div class="cl" style="color:var(--green)">GreyLabs — Agentic Voice</div><p style="margin-top:8px">Ground-up voice agents for BFSI. Handles autonomous outbound calls across five use cases. Already shipping with life insurers (SBI Life, ICICI Pru).</p><p style="margin-top:12px;font-size:13px"><strong>Edge:</strong> Insurance customer base + agentic stack. PIVC is a natural wedge — high-volume, rule-driven, regulated.</p></div>
     <div class="card" style="border-left:2px solid var(--red)"><div class="cl" style="color:var(--red)">Observe / Uniphore / Gong</div><p style="margin-top:8px">Conversation analytics. Analyse calls after the fact — QA, sentiment, compliance review. They do not run the call.</p><p style="margin-top:12px;font-size:13px"><strong>Observation:</strong> Helpful for "did the agent comply?", but cannot replace the agent. Analytics is downstream — PIVC is upstream.</p></div>
@@ -231,7 +246,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 8 FRAMEWORK -->
 <section class="slide" id="framework">
-  <div class="rv"><div class="sn">07 — Solution</div><h2 class="st">Staged Autonomy</h2><p class="sl">Not every PIVC call should be fully autonomous. Stage the automation by customer risk profile and call complexity.</p></div>
+  <div class="rv"><div class="sn">08 — Solution</div><h2 class="st">Staged Autonomy</h2><p class="sl">Not every PIVC call should be fully autonomous. Stage the automation by customer risk profile and call complexity.</p></div>
   <div class="flow rv">
     <div class="fs"><span class="ft" style="color:var(--green)">Stage 1 — Simple</span><h4>Fully autonomous</h4><p>Standard term policy, customer answered warm-up. AI runs the full PIVC. ~60% of calls.</p></div>
     <div class="fs"><span class="ft" style="color:var(--warm)">Stage 2 — Adaptive</span><h4>AI + soft check-in</h4><p>Older customer, regional language, ULIP or annuity product. AI adapts pace, adds comprehension checks. ~25% of calls.</p></div>
@@ -243,7 +258,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 9 WARMUP -->
 <section class="slide" id="warmup">
-  <div class="rv"><div class="sn">08 — Feature</div><h2 class="st">Warm-Up Pre-Call</h2><p class="sl">The single biggest lever on first-attempt completion — a 2-hour heads-up. Costs almost nothing, changes the answer rate.</p></div>
+  <div class="rv"><div class="sn">09 — Feature</div><h2 class="st">Warm-Up Pre-Call</h2><p class="sl">The single biggest lever on first-attempt completion — a 2-hour heads-up. Costs almost nothing, changes the answer rate.</p></div>
   <div class="tc rv">
     <div>
       <ol class="steps">
@@ -265,7 +280,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 10 CHECKPOINTS -->
 <section class="slide" id="checkpoints">
-  <div class="rv"><div class="sn">09 — Feature</div><h2 class="st">Comprehension Checkpoints</h2><p class="sl">Compliance needs more than a "yes". This feature turns a passive confirmation into a live check the customer actually understood.</p></div>
+  <div class="rv"><div class="sn">10 — Feature</div><h2 class="st">Comprehension Checkpoints</h2><p class="sl">Compliance needs more than a "yes". This feature turns a passive confirmation into a live check the customer actually understood.</p></div>
   <div class="tc rv">
     <div>
       <ol class="steps">
@@ -287,7 +302,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 11 AUDIT -->
 <section class="slide" id="audit">
-  <div class="rv"><div class="sn">10 — Feature</div><h2 class="st">Structured Compliance Audit Trail</h2><p class="sl">The piece that lets the insurer's compliance head sleep. Every disclosure, every customer response, logged as structured data — not just audio.</p></div>
+  <div class="rv"><div class="sn">11 — Feature</div><h2 class="st">Structured Compliance Audit Trail</h2><p class="sl">The piece that lets the insurer's compliance head sleep. Every disclosure, every customer response, logged as structured data — not just audio.</p></div>
   <div class="tc rv">
     <div>
       <ol class="steps">
@@ -308,7 +323,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 12 METRICS -->
 <section class="slide" id="metrics">
-  <div class="rv"><div class="sn">11 — Metrics</div><h2 class="st">Projected Impact — 12 Months In</h2><p class="sl">Conservative estimates based on voice-AI benchmarks in Indian BFSI and public PIVC pain points.</p></div>
+  <div class="rv"><div class="sn">12 — Metrics</div><h2 class="st">Projected Impact — 12 Months In</h2><p class="sl">Conservative estimates based on voice-AI benchmarks in Indian BFSI and public PIVC pain points.</p></div>
   <div class="tc rv">
     <div class="card">
       <div class="cl">Completion &amp; Quality</div>
@@ -341,7 +356,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 13 PRIORITY -->
 <section class="slide" id="priority">
-  <div class="rv"><div class="sn">12 — Prioritisation</div><h2 class="st">What to Ship First</h2><p class="sl">Quick wins unlock the feature. Strategic bets scale it. Stay honest about what is a quarter and what is a year.</p></div>
+  <div class="rv"><div class="sn">13 — Prioritisation</div><h2 class="st">What to Ship First</h2><p class="sl">Quick wins unlock the feature. Strategic bets scale it. Stay honest about what is a quarter and what is a year.</p></div>
   <div class="mx rv">
     <div class="mq q1"><h4>Quick Wins — Low Effort, High Impact</h4><ul>
       <li><strong>Warm-up pre-call</strong> — WhatsApp template + scheduling slot. 2-3 week build. Biggest lever on completion rate.</li>
@@ -366,7 +381,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 14 RISKS -->
 <section class="slide" id="risks">
-  <div class="rv"><div class="sn">13 — Risks</div><h2 class="st">What Could Go Wrong</h2><p class="sl">Each feature has an edge case that kills it if ignored. Name it, measure it, mitigate it.</p></div>
+  <div class="rv"><div class="sn">14 — Risks</div><h2 class="st">What Could Go Wrong</h2><p class="sl">Each feature has an edge case that kills it if ignored. Name it, measure it, mitigate it.</p></div>
   <div class="cg c2 rv">
     <div class="card"><h3>Customer Fails Comprehension They Actually Understood</h3><p>False negative on a checkpoint annoys the customer and adds friction. <strong>Mitigation:</strong> Paraphrase matching via LLM-as-judge with a manual review sample. Two-chance policy.</p><span class="tag r">Precision risk</span></div>
     <div class="card"><h3>IRDAI Rejects AI-Only PIVC</h3><p>Regulator may insist on human-in-loop for any AI PIVC. <strong>Mitigation:</strong> Lead with hybrid. Build compliance head as champion. Share audit trail with IRDAI early for informal sign-off.</p><span class="tag r">Regulatory risk</span></div>
@@ -378,7 +393,7 @@ table.t td:first-child{color:var(--text);font-weight:500}
 
 <!-- 15 SUMMARY -->
 <section class="slide slide-end" id="summary">
-  <div class="rv"><div class="sn">14 — Summary</div><h2 class="st">The Playbook</h2><p class="sl" style="margin-left:auto;margin-right:auto">Do not try to fully autonomise PIVC overnight. Stage it. Win the compliance head first, not the ops head. Build the audit trail as hard as you build the voice.</p></div>
+  <div class="rv"><div class="sn">15 — Summary</div><h2 class="st">The Playbook</h2><p class="sl" style="margin-left:auto;margin-right:auto">Do not try to fully autonomise PIVC overnight. Stage it. Win the compliance head first, not the ops head. Build the audit trail as hard as you build the voice.</p></div>
   <div class="cg c3 rv" style="max-width:900px;margin:0 auto">
     <div class="card" style="text-align:center;border-top:2px solid var(--green)"><div class="cl">Ship Now</div><p style="margin-top:8px">Warm-up pre-call<br>Time-of-day retry<br>Basic compliance log</p><span class="tag l">Weeks</span></div>
     <div class="card" style="text-align:center;border-top:2px solid var(--blue)"><div class="cl">Build Next</div><p style="margin-top:8px">Comprehension checkpoints<br>Staged autonomy router<br>Central policy DB</p><span class="tag m">Months</span></div>
